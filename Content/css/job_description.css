@@ -1,0 +1,147 @@
+fieldset, label { margin: 0; padding: 0; }
+/****** Style Star Rating Widget *****/
+.rating {border: none;float: left;}
+.rating > input { display: none; } 
+.rating > label:before {margin:2px 5px;font-size: 1.25em;font-family: FontAwesome;display: inline-block;content: "\f005";}
+.rating > .half:before { content: "\f089";position: absolute;}
+.rating > label {color:#ddd;float:right;}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+.profile_1 {background:none;margin-top:30px;margin-bottom:30px;border:0px;box-shadow:none;border-radius:0px;overflow:hidden;position:relative;}
+
+.headingInnerMain {text-align:center;font-size:35px;text-shadow: 3px 3px 0 rgba(0, 0, 0, .35);font-weight:300;color:#fff;box-sizing:border-box;padding:30px 0px 30px 0px;font-family: 'Montserrat', sans-serif;text-overflow: ellipsis;/*white-space: nowrap;*/overflow: hidden;padding-left:2em;padding-right:2em;}
+.headingInnerMain span {font-weight:800;}
+.headingInnerMain .txtCompany {font-size:22px;font-weight:800;text-transform:uppercase;}
+.headingInnerMain .txt {font-size:14px;text-shadow: 1px 1px 0 rgba(0, 0, 0, .35);}
+
+.summary .heading {font-size:18px;color:#;}
+.summary span {font-size:12px;color:#;margin-bottom:20px;display:block;}
+.summary a {font-size:12px;color:#000;}
+.summary a:hover {font-size:12px;color:#000;}
+
+.rgtPanelProfile {position:relative;box-sizing:border-box;transition: all .5s ease-in;}
+.rgtPanelProfile .profileInfo {box-sizing:border-box;padding-top:25px;padding-bottom:25px;padding-left:50px;padding-right:50px;text-align:right;position:relative;}
+.rgtPanelProfile .profileInfo .edit {position:absolute;left:0px;top:0px;transition: all .5s ease-in;padding:7px 15px;color:#000;}
+.rgtPanelProfile .profileInfo .edit span {opacity:0;transition: all .5s ease-in;width:0px;}
+.rgtPanelProfile .profileInfo:hover .edit {left:0px;top:0px;opacity:1;background:#a17b3c;color:#fff;padding:7px 15px;text-decoration:none;border-radius:0px 0px 6px 0px;}
+.rgtPanelProfile .profileInfo:hover .edit span {opacity:1;transition: all .5s ease-in;width:auto;}
+.rgtPanelProfile .profileInfo h1 {font-weight:700;font-size:35px;margin:0px;padding:0px;padding-bottom:15px;color:#000;text-align:right;}
+.rgtPanelProfile .profileInfo h5 {font-weight:600;font-size:15px;margin:0px;padding:0px;padding-bottom:15px;color:#ae904d;text-align:right;}
+.rgtPanelProfile .profileInfo h3 {font-weight:300;font-size:20px;margin:0px;padding:0px;padding-bottom:15px;color:#4b532f;line-height:30px;text-align:right;}
+.rgtPanelProfile .profileInfo .progress {height:15px;width:100%;max-width:70%;float:right;margin-bottom:0px;}
+.rgtPanelProfile .profileInfo .progress .progress-bar {font-size:10px;line-height:16px;background:#505630;}
+.rgtPanelProfile .profileInfo .resumeCopy {font-size:14px;font-weight:300;text-align:left;color:#000;}
+.rgtPanelProfile .profileInfo .resumeCopy span {color:#999;font-weight:500;}
+.rgtPanelProfile .profileInfo .resumeCopy a {display:inline-block;color:#a98740;text-decoration:none;}
+.rgtPanelProfile .profileInfo .resumeCopy a.add {display:inline-block;font-size:11px;padding-top:12px;}
+.rgtPanelProfile .profileInfo .titleAction {font-size:14px;font-weight:300;text-align:right;}
+.rgtPanelProfile .profileInfo .titleAction a {display:inline-block;color:#a98740;text-decoration:none;padding:7px 12px;transition: all .5s ease-in;}
+.rgtPanelProfile .profileInfo .titleAction a:hover {background:#a98740;color:#fff;}
+.profileComplete {color:#999;padding-top:20px;padding-bottom:7px;font-size:12px;font-weight:700;text-transform:uppercase;clear:both;}
+.smallHeadings {color:#999;padding-top:20px;padding-bottom:7px;font-size:12px;font-weight:700;text-transform:uppercase;clear:both;}
+
+.rgtPanelProfile .profileDetail {position:relative;text-align:right;}
+.rgtPanelProfile .profileDetail .edit {position:absolute;left:0px;top:0px;transition: all .5s ease-in;padding:7px 15px;color:#000;z-index:10;}
+.rgtPanelProfile .profileDetail .edit span {opacity:0;transition: all .5s ease-in;width:0px;}
+.rgtPanelProfile .profileDetail:hover .edit {left:0px;top:0px;opacity:1;background:#a17b3c;color:#fff;padding:7px 15px;text-decoration:none;border-radius:0px 0px 6px 0px;}
+.rgtPanelProfile .profileDetail:hover .edit span {opacity:1;transition: all .5s ease-in;width:auto;}
+.rgtPanelProfile .profileDetail h2 {font-weight:300;font-size:20px;margin:0px;margin-top:15px;margin-bottom:15px;padding:0px;padding-right:50px;padding-top:15px;padding-bottom:15px;color:#4b532f;line-height:30px;text-align:right;background:#f1f1f1;position:relative;}
+.rgtPanelProfile .profileDetail .summary {box-sizing:border-box;padding-right:50px !important;text-align:right;}
+.rgtPanelProfile .profileDetail .summary h3 {font-weight:600;font-size:15px;margin:0px;padding:0px;padding-top:10px;padding-bottom:3px;color:#ae904d;text-align:right;line-height:20px}
+.rgtPanelProfile .profileDetail .summary span {font-size:12px;color:#999;display:block;margin-bottom:20px;}
+.profileDetailEdit {padding:25px 50px;text-align:left !important;}
+.profileDetailEdit label {padding-bottom:5px;}
+
+
+.rgtPanelProfile .workHistory {position:relative;text-align:right;}
+.rgtPanelProfile .workHistory .edit {position:absolute;left:0px;top:0px;transition: all .5s ease-in;padding:7px 15px;color:#000;z-index:10;}
+.rgtPanelProfile .workHistory .edit span {opacity:0;transition: all .5s ease-in;width:0px;}
+.rgtPanelProfile .workHistory:hover .edit {left:0px;top:0px;opacity:1;background:#a17b3c;color:#fff;padding:7px 15px;text-decoration:none;border-radius:0px 0px 6px 0px;}
+.rgtPanelProfile .workHistory:hover .edit span {opacity:1;transition: all .5s ease-in;width:auto;}
+.rgtPanelProfile .workHistory h2 {font-weight:300;font-size:20px;margin:0px;margin-top:15px;margin-bottom:15px;padding:0px;padding-right:50px;padding-top:15px;padding-bottom:15px;color:#4b532f;line-height:30px;text-align:right;background:#f1f1f1;position:relative;}
+.rgtPanelProfile .workHistory .whContent {box-sizing:border-box;padding-right:50px !important;text-align:right;}
+.rgtPanelProfile .workHistory .whContent h3 {font-weight:600;font-size:15px;margin:0px;padding:0px;padding-top:10px;padding-bottom:3px;color:#ae904d;text-align:right;line-height:20px}
+.rgtPanelProfile .workHistory .whContent span {font-size:12px;color:#999;display:block;margin-bottom:20px;}
+.workHistoryEdit {padding:25px 50px;text-align:left !important;}
+.workHistoryEdit label {padding-bottom:5px;}
+.workHistoryEdit a {color:#000;font-size:12px;margin-top:10px;margin-bottom:20px;display:block;}
+
+.rgtPanelProfile .education {position:relative;text-align:right;}
+.rgtPanelProfile .education .edit {position:absolute;left:0px;top:0px;transition: all .5s ease-in;padding:7px 15px;color:#000;z-index:10;}
+.rgtPanelProfile .education .edit span {opacity:0;transition: all .5s ease-in;width:0px;}
+.rgtPanelProfile .education:hover .edit {left:0px;top:0px;opacity:1;background:#a17b3c;color:#fff;padding:7px 15px;text-decoration:none;border-radius:0px 0px 6px 0px;}
+.rgtPanelProfile .education:hover .edit span {opacity:1;transition: all .5s ease-in;width:auto;}
+.rgtPanelProfile .education h2 {font-weight:300;font-size:20px;margin:0px;margin-top:15px;margin-bottom:15px;padding:0px;padding-right:50px;padding-top:15px;padding-bottom:15px;color:#4b532f;line-height:30px;text-align:right;background:#f1f1f1;position:relative;}
+.rgtPanelProfile .education .education_Content {box-sizing:border-box;padding-right:50px !important;text-align:right;}
+.rgtPanelProfile .education .education_Content h3 {font-weight:600;font-size:15px;margin:0px;padding:0px;padding-top:10px;padding-bottom:3px;color:#ae904d;text-align:right;line-height:20px}
+.rgtPanelProfile .education .education_Content span {font-size:12px;color:#999;display:block;margin-bottom:20px;}
+.educationEdit {padding:25px 50px;text-align:left !important;}
+.educationEdit label {padding-bottom:5px;}
+.educationEdit a {color:#000;font-size:12px;}
+
+.edit {position:absolute;left:-25px;top:25px;transition: all .5s ease-in;}
+.edit {position:absolute;left:25px;top:25px;}
+
+.editinnerProfile label {padding-bottom:5px;}
+.actionButtons button {padding:10px;border:none;}
+.actionButtons .save {background:#aa8841;color:#fff;}
+.actionButtons .cancel {background:#c1c1c1;color:#fff;}
+
+.lftPanelProfile {position:relative;box-sizing:border-box;box-shadow: none;border:1px solid #e1e1e1;}
+.lftPanelProfile .profilImage {width:100%;margin:auto;text-align:center; position:relative; background: -moz-linear-gradient(top,  rgba(0,0,0,0.26) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0.26) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(0,0,0,0.26) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+.lftPanelProfile .profilImage .edit_right {position:absolute;right:-30px;top:0px;transition: all .5s ease-in;padding:7px 15px;color:#000;z-index:10;white-space:nowrap;}
+.lftPanelProfile .profilImage .edit_right span {opacity:0;transition: all .5s ease-in;width:0px;}
+.lftPanelProfile .profilImage:hover .edit_right {right:0px;top:0px;opacity:1;background:#a17b3c;color:#fff;padding:7px 15px;text-decoration:none;border-radius:0px 0px 0px 6px;}
+.lftPanelProfile .profilImage:hover .edit_right span {opacity:1;transition: all .5s ease-in;width:auto;}
+.lftPanelProfile .profilImage img{width:80%;height:auto;padding-top:25px;}
+.lftPanelProfile .personalInfo h2 {text-align:left;display:block;margin-top:20px;margin-bottom:0px;font-size:20px;font-weight:700;text-transform:uppercase;padding-left:0px;}
+.lftPanelProfile .personalInfo ul {padding:0px;margin:0px;}
+.lftPanelProfile .personalInfo li {list-style:none;padding-top:20px;padding-bottom:20px;padding-left:20px;}
+.lftPanelProfile .personalInfo .piCompany {background:#51542c;color:#fff;font-size:15px;font-weight:300;}
+.lftPanelProfile .personalInfo .piCompany span {background:#51542c;color:#fff;font-size:14px;font-weight:400;margin-right:15px;width:35px;display:inline-block;text-align:center;}
+.lftPanelProfile .personalInfo .piMobile {background:#ac8c48;color:#fff;font-size:15px;font-weight:300;}
+.lftPanelProfile .personalInfo .piMobile span {background:#ac8c48;color:#fff;font-size:14px;font-weight:400;margin-right:15px;width:35px;display:inline-block;text-align:center;}
+.lftPanelProfile .personalInfo .piEmail {background:#b1b267;color:#fff;font-size:15px;font-weight:300;}
+.lftPanelProfile .personalInfo .piEmail span {background:#b1b267;color:#fff;font-size:14px;font-weight:400;margin-right:15px;width:35px;display:inline-block;text-align:center;}
+
+.personalEdit {padding:10px 25px;text-align:left !important;}
+.personalEdit label {padding-bottom:5px;}
+.personalEdit a {color:#000;font-size:12px;}
+
+.lftPanelProfile .personalSkills {text-align:left;margin:auto;padding:10px 25px 30px 25px;background:#f1f1f1;overflow:hidden;position:relative;}
+.lftPanelProfile .personalSkills .edit_right {position:absolute;right:-30px;top:0px;transition: all .5s ease-in;padding:7px 15px;color:#000;z-index:10;white-space:nowrap;}
+.lftPanelProfile .personalSkills .edit_right span {opacity:0;transition: all .5s ease-in;width:0px;}
+.lftPanelProfile .personalSkills:hover .edit_right {right:0px;top:0px;opacity:1;background:#a17b3c;color:#fff;padding:7px 15px;text-decoration:none;border-radius:0px 0px 0px 6px;}
+.lftPanelProfile .personalSkills:hover .edit_right span {opacity:1;transition: all .5s ease-in;width:auto;}
+.lftPanelProfile .personalSkills label {padding-top:1px;}
+.lftPanelProfile .personalSkills h2 {text-align:left;display:block;margin-top:20px;margin-bottom:0px;font-size:20px;font-weight:700;text-transform:uppercase;padding-left:0px;}
+.lftPanelProfile .personalSkills span {font-weight:600;font-size:13px;padding-top:15px;padding-bottom:0px;clear:both;text-transform:uppercase;}
+.personalSkillsEdit {padding:10px 0px;text-align:left !important;}
+.personalSkillsEdit label {padding-bottom:5px;}
+.personalSkillsEdit a {color:#000;font-size:12px;}
+.blockcol {display:block;}
+
+.lftPanelProfile .personalOtherInfo {text-align:left;margin:auto;padding:10px 25px 30px 25px;background:#fff;overflow:hidden;position:relative;}
+.lftPanelProfile .personalOtherInfo .edit_right {position:absolute;right:-30px;top:0px;transition: all .5s ease-in;padding:7px 15px;color:#000;z-index:10;}
+.lftPanelProfile .personalOtherInfo .edit_right span {opacity:0;transition: all .5s ease-in;width:0px;}
+.lftPanelProfile .personalOtherInfo:hover .edit_right {right:0px;top:0px;opacity:1;background:#a17b3c;color:#fff;padding:7px 15px;text-decoration:none;border-radius:0px 0px 0px 6px;}
+.lftPanelProfile .personalOtherInfo:hover .edit_right span {opacity:1;transition: all .5s ease-in;width:auto;}
+.lftPanelProfile .personalOtherInfo h2 {text-align:left;display:block;margin-top:20px;margin-bottom:0px;font-size:20px;font-weight:700;text-transform:uppercase;padding-left:0px;}
+.lftPanelProfile .personalOtherInfo .od {display:block;padding:10px 0px;font-weight:400;text-align:left;position:relative;}
+.lftPanelProfile .personalOtherInfo .od span {font-size:11px;color:#999;width:70px;display:inline-block;}
+.personalOtherInfoEdit {padding:10px 0px;text-align:left !important;}
+.personalOtherInfoEdit label {padding-bottom:5px;}
+.personalOtherInfoEdit a {color:#000;font-size:12px;}

@@ -1,0 +1,360 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+}
+
+
+<!doctype html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JobsBridge</title>
+
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    @*<link href="~/Content/css/style.css" rel="stylesheet" />*@
+
+    <link href="~/Content/css/custom.css" rel="stylesheet" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800,900" rel="stylesheet">
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+    <script src="~/Content/js/modernizr.custom.js"></script>
+    <script src="~/Content/js/modernizr.custom.js"></script>
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container tpContainer mainBGHP">
+        <div class="row">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="javascript:void(0);">About</a>
+                <a href="javascript:void(0);">Services</a>
+                <a href="javascript:void(0);">Clients</a>
+                <a href="javascript:void(0);">Contact</a>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 topContainer">
+                <div class="pull-left">
+                    <div id="main">
+                        <span style="cursor:pointer" class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>
+                    </div>
+                </div>
+                <div class="pull-right tpRightNav">
+                    <ul>
+                        <li><a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" class="signupBtn">Sign Up</a></li>
+                        <li class="dropdown">
+                            <a class="" id="loginJobSeeker"   href="/Account/UserLogin">Login</a>
+                            @*<ul class="dropdown-menu pull-right" aria-labelledby="loginJobSeeker">
+                                <li class="noPaddingLR">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="usr" placeholder="Email">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="pwd" placeholder="Password">
+                                        </div>
+                                        <div class="checkbox sf">
+                                            <label><input type="checkbox"> Stay Signed In</label><a href="">Forget Password</a>
+                                        </div>
+                                        <a href="/Account/Login" class="btn btn-block btn-login">Login</a>
+                                        <a type="/Account/SignUp" class="btn btn-block btn-default" href="registration.html">New User? Sign in Here</a>
+                                    </div>
+                                </li>
+                            </ul>*@
+                        </li>
+                        <li><a href="javascript:void(0);">For Employer</a></li>
+                    </ul>
+                </div>
+            </div><!-- Top Row of Navigation -->
+
+            <div class="col-xs-12 col-sm-12 col-md-12 logo">
+                JOBS BRIDGE
+            </div><!-- logo -->
+
+            <div class="col-xs-12 col-sm-12 col-md-12 searchLine">
+                Search for your <span>Desired Job</span>
+            </div><!-- Search line -->
+
+            <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1 searchMain">
+
+                <div class="col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12 noPaddingLR">
+                        <input type="text" class="form-control searchKey" placeholder="Search by Skills or Titles">
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 noPaddingLR">
+
+                        <button type="button" class="btn btn-default dropdown-toggle searchLocation" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="pull-left">Search Location</span> <span class="caret pull-right"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="javascript:void(0);">California</a></li>
+                            <li><a href="javascript:void(0);">Florida</a></li>
+                            <li><a href="javascript:void(0);">Hawaii</a></li>
+                            <li><a href="javascript:void(0);">Alaska</a></li>
+                            <li><a href="javascript:void(0);">Pennsylvania</a></li>
+                            <li><a href="javascript:void(0);">Alabama</a></li>
+                            <li><a href="javascript:void(0);">Minnesto</a></li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-12 noPaddingLR">
+                        <a href="search_result.html" class="searchMainButton">Search Jobs</a>
+                    </div>
+
+                </div><!-- /input-group -->
+            </div><!-- main Search -->
+
+            <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1 browseJobs">
+                <button id="animate" class="col-xs-2 text-align-left">Browse Jobs <span class="glyphicon glyphicon-align-left"></span></button>
+                <div id="content" class="bJobs col-xs-9"><a href="">Function</a><a href="">Location</a><a href="">Industry</a><a href="">Skills</a><a href="">Companies</a></div>
+            </div><!-- Browse Jobs Ends -->
+
+            <div class="col-xs-12 styleResume">
+                <div class="col-xs-8 col-xs-offset-2 srInner">
+                    <h2>Style Your Resume and Create an Impact!</h2>
+                    <a href="">Learn More<span class="glyphicon glyphicon-menu-right"></span></a>
+                </div>
+
+            </div><!-- Style Your Resume -->
+
+        </div>
+    </div><!-- topHeader Ends -->
+
+    <div class="container benifits">
+        <div class="row">
+            <h1>Benefits</h1>
+            <div class="col-xs-6 col-xs-offset-3">
+                <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                        <ul id="tabs" class="nav nav-tabs customNavTabs" data-tabs="tabs">
+                            <li class="col-xs-6 active noPaddingLR"><a href="#tab1" role="tab" data-toggle="tab">Job Seekers</a></li>
+                            <li class="col-xs-6 noPaddingLR"><a href="#tab2" role="tab" data-toggle="tab">Employers</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="my-tab-content" class="tab-content">
+                    <div class="tab-pane fade in active" id="tab1">
+                        <div class="col-xs-10 col-xs-offset-1 customProfile_JS">
+                            <img src="~/images/iconCustomerProfile.png">
+                            <h2>Custom Profile</h2>
+                            Create detailed professional profile with your picture and skills
+                        </div>
+
+                        <div class="col-xs-10 col-xs-offset-1 customProfile_JS">
+                            <img src="~/images/iconVideoProfile.png">
+                            <h2>Video Resume</h2>
+                            Make a strong case for your candidacy with a video resume
+                        </div>
+
+                        <div class="col-xs-10 col-xs-offset-1 customProfile_JS">
+                            <img src="~/images/iconApplicationTracking.png">
+                            <h2>Application Tracking</h2>
+                            Get notified when your profile is viewed by a hiring manager
+                        </div>
+
+                        <div class="col-xs-12 noPaddingLR">
+                            <button class="JSbutton col-xs-12 btn btn-lg"><span class="pull-left">Create Profile</span><span class="pull-right glyphicon glyphicon-arrow-right"></span></button>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="tab2">
+                        <div class="col-xs-10 col-xs-offset-1 customProfile_JS">
+                            <img src="~/images/iconCustomerProfile.png">
+                            <h2>Custom Profile Employer</h2>
+                            Create detailed professional profile with your picture and skills
+                        </div>
+
+                        <div class="col-xs-10 col-xs-offset-1 customProfile_JS">
+                            <img src="~/images/iconVideoProfile.png">
+                            <h2>Video Resume Employer</h2>
+                            Make a strong case for your candidacy with a video resume
+                        </div>
+
+                        <div class="col-xs-10 col-xs-offset-1 customProfile_JS">
+                            <img src="~/images/iconApplicationTracking.png">
+                            <h2>Application Tracking for Employer</h2>
+                            Get notified when your profile is viewed by a hiring manager
+                        </div>
+                        <div class="col-xs-12 noPaddingLR">
+                            <button class="JSbutton col-xs-12 btn btn-lg"><span class="pull-left">Create Profile</span><span class="pull-right glyphicon glyphicon-arrow-right"></span></button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div><!-- Benifits ends -->
+
+    <div class="container trends">
+        <div class="row">
+            <h1>Trend Search</h1>
+            <div class="col-xs-6 col-xs-offset-3">
+                <img src="~/images/tag.png">
+            </div>
+        </div>
+    </div>	<!-- Trends ends -->
+
+    <div class="container companies">
+        <div class="row">
+            <h1>Companies Using</h1>
+            <h4>Jobs Bridge</h4>
+            <div class="col-xs-8 col-xs-offset-2">
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <div class="carousel slide media-carousel" id="media">
+                            <div class="carousel-inner">
+                                <div class="item  active">
+                                    <div class="row">
+                                        <div class="col-xs-3 text-align-center ">
+                                            <a href="#"><img alt="" src="~/images/companyLogo_deloitte.png"></a>
+                                        </div>
+                                        <div class="col-xs-3 text-align-center">
+                                            <a href="#"><img alt="" src="~/images/companyLogo_amazon.png"></a>
+                                        </div>
+                                        <div class="col-xs-3 text-align-center ">
+                                            <a href="#"><img alt="" src="~/images/companyLogo_ces.png"></a>
+                                        </div>
+                                        <div class="col-xs-3 text-align-center ">
+                                            <a href="#"><img alt="" src="~/images/companyLogo_walmart.png"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="row">
+                                        <div class="col-xs-3 text-align-center ">
+                                            <a href="#"><img alt="" src="~/images/companyLogo_comcast.png"></a>
+                                        </div>
+                                        <div class="col-xs-3 text-align-center ">
+                                            <a href="#"><img alt="" src="~/images/companyLogo_walmart.png"></a>
+                                        </div>
+                                        <div class="col-xs-3 text-align-center ">
+                                            <a href="#"><img alt="" src="~/images/companyLogo_deloitte.png"></a>
+                                        </div>
+                                        <div class="col-xs-3 text-align-center ">
+                                            <a href="#"><img alt="" src="~/images/companyLogo_comcast.png"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="row">
+                                        <div class="col-xs-3 text-align-center ">
+                                            <a href="#"><img alt="" src="~/images/companyLogo_amazon.png"></a>
+                                        </div>
+                                        <div class="col-xs-3 text-align-center ">
+                                            <a href="#"><img alt="" src="~/images/companyLogo_ces.png"></a>
+                                        </div>
+                                        <div class="col-xs-3 text-align-center ">
+                                            <a href="#"><img alt="" src="~/images/companyLogo_comcast.png"></a>
+                                        </div>
+                                        <div class="col-xs-3 text-align-center ">
+                                            <a href="#"><img alt="" src="~/images/companyLogo_deloitte.png"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
+                            <a data-slide="next" href="#media" class="right carousel-control">›</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>	<!-- Companies panel ends -->
+
+    <div class="container footer">
+        <div class="row">
+            <h1>Subscribe with Us!</h1>
+            <div class="col-xs-6 col-xs-offset-3 subscribe">
+                <input type="text" class="form-control " placeholder="Enter Your Email Address">
+                <button><span class="glyphicon glyphicon-send"></span></button>
+            </div>
+            <div class="col-xs-4 col-xs-offset-4 socialButton">
+                <div class="col-xs-6 text-align-center"><a href=""><img src="~/images/btn_facebook.png"></a></div><div class="col-xs-6 text-align-center"><a href=""><img src="~/images/btn_gplus.png"></a></div>
+            </div>
+            <div class="col-xs-6 col-xs-offset-3 footerLinks">
+                <ul><li><a href="">Home</a></li><li>|</li><li><a href="">Contact Us</a></li><li>|</li><li><a href="">Feedback</a></li><li>|</li><li><a href="">FAQ</a></li><li>|</li><li><a href="">Terms of Use</a></li><li>|</li><li><a href="">Privacy Policy</a></li></ul>
+            </div>
+            <div class="col-xs-6 col-xs-offset-3 copyright">
+                <div class="col-xs-6 text-align-left txt">Copyright Jobs Bridge 2017. All Right Reserved</div>
+                <div class="col-xs-6 text-align-right"><a href=""><img src="~/images/iconFacebook.png"></a><a href=""><img src="~/images/iconTwitter.png"></a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="container benifits registration">
+                        <div class="row">
+
+                            <div class="col-xs-12">
+                                <h2>Find the right job on <span>jobsbridge.com.</span> You are only few steps away from millions of jobs</h2>
+                                <div class="col-xs-6 text-align-center registrationSteps">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                    <a class="fresher btn-block" href="/Account/Register">Fresher</a>
+                                    <p>I have just graduated/I haven't worked after graduation</p>
+                                </div>
+
+                                <div class="col-xs-6 text-align-center registrationSteps">
+                                    <i class="fa fa-black-tie" aria-hidden="true"></i>
+                                    <a class="professional btn-block" href="/UserRegistration/PersonalDetails">Professional</a>
+                                    <p>I have at least 1 month of work experience</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            document.body.style.backgroundColor = "white";
+        }
+
+        // for browseJobs button
+        $("#animate").click(function () {
+            $("#content").animate(
+                { "width": "450px" },
+                "fast");
+        });
+
+        //  for Carousel
+        $(document).ready(function () {
+            $('#media').carousel({
+                pause: true,
+                interval: false,
+            });
+        });
+    </script>
+
+</body>
+</html>

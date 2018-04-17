@@ -1,0 +1,375 @@
+﻿@model BusinessModel.UserRegistartionPersonalDetailsModel
+@{
+    /**/
+    ViewBag.Title = "User Registration";
+    Layout = null;
+
+}
+
+
+
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JobsBridge</title>
+
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/custom.css" rel="stylesheet" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800,900" rel="stylesheet">
+
+    @*<link href="~/Content/css/font-awesome.css" rel="stylesheet" />*@
+    <script src="~/Content/js/modernizr.custom.js"></script>
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.js"></script>
+
+</head>
+<body>
+    <div class="container tpContainer mainBGHP">
+        <div class="row">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Clients</a>
+                <a href="#">Contact</a>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 topContainer">
+                <div class="pull-left">
+                    <div id="main">
+                        <span style="cursor:pointer" class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>
+                        <a href="index.html" style="cursor:pointer" class="logo_small">Jobs Bridge</a>
+
+                    </div>
+                </div>
+                <div class="pull-right tpRightNav" style="display:none;">
+                    <ul>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" id="loginJobSeeker" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" href="#">Login</a>
+                            @*<ul class="dropdown-menu pull-right" aria-labelledby="loginJobSeeker">
+                                    <li class="noPaddingLR">
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="usr" placeholder="Email">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" id="pwd" placeholder="Password">
+                                            </div>
+                                            <div class="checkbox sf">
+                                                <label><input type="checkbox"> Stay Signed In</label><a href="">Forget Password</a>
+                                            </div>
+                                            <a type="submit" class="btn btn-block btn-login">Login</a>
+                                            <a type="submit" class="btn btn-block btn-default" href="registration.html">New User? Sign in Here</a>
+                                        </div>
+                                    </li>
+                                </ul>*@
+                        </li>
+                        <li><a href="#">For Employer</a></li>
+                    </ul>
+                </div>
+            </div><!-- Top Row of Navigation -->
+
+            <div class="col-xs-12 col-sm-12 col-md-12 headingInnerMain">
+                Upload Resume On <span>JobsBridge</span> Now!
+            </div><!-- logo -->
+
+        </div>
+    </div><!-- topHeader Ends -->
+    @*@using (Html.BeginForm("SavePersonalDetails", "UserRegistration", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {*@
+    <div class="container benifits registration">
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2 linkedIn"><a href="javascript:void(0);"><img src="~/Content/images/login_google.png"></a> &nbsp; <a href="javascript:void(0);"><img src="~/Content/images/login_fb.png"></a> &nbsp; <a href="javascript:void(0);"><img src="~/Content/images/login_in.png"></a></div>
+            <div class="clearfix"></div>
+            <h5>or</h5>
+            <h1>Create a New Account</h1>
+            <div class="col-xs-6 col-xs-offset-3 steps"><ul><li class="active">Personal Details</li><li>Employment</li><li>Education</li></ul></div>
+
+            <div class="col-xs-10 col-xs-offset-1">
+                <div class="col-xs-6 col-xs-offset-3 baseregister">
+                    <div class="col-xs-12">
+                        <form id="personalDetails">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.FullName, new { @class = "form-control", @placeholder = "Name", @required = "required" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(X => X.EmailID, new { @class = "form-control", @placeholder = "Email", @required = "required" })
+                                @Html.ValidationMessageFor(x => x.EmailID)
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(X => X.Password, new { @class = "form-control", @placeholder = "Password", @required = "required", @type = "password" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(X => X.MobileNumber, new { @class = "form-control", @placeholder = "Mobile No.", @required = "required", @maxlength = "10", @minlength = "10" })
+                            </div>
+                            <div class="form-group currentLocation clearfix">
+                                <div class="col-xs-12 noPaddingLR">
+                                    <div class="dropdown ">
+                                        @Html.DropDownListFor(x => x.TotalExYear, Model.ListOfExper, "Select Experince in Year ", new { @class = "form-control" })
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Gender</label>
+
+
+                                <div class="ctm_radio">                                  
+
+                                    <label class="col-xs-6 btnAmPm center-aligned time-period-right"><input type="radio" name="Gender" value="Male" />Male</label>
+
+                                    <label class="col-xs-6 btnAmPm center-aligned time-period-right"><input type="radio" name="Gender" value="Female" />Female</label>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Uplaod Resume</label>
+                                <div class="uploadResume">
+
+                                    <div class="uploadResume">
+                                        <input type="file" id="FileUploadResume" accept=".doc,.docx,.rtf,.pdf" />
+
+                                    </div>
+                                </div>
+                                <label class="lbl">We will email you a verification link at the email address entered above. Check your spam box if you do not see that email. You will have to verify your email to complete signup process.</label>
+                            </div>
+                            <div class="col-xs-12 noPaddingLR">
+                                <input class="JSbutton col-xs-12 btn btn-lg" type="button" value="Create Profile" id="btnSubmit" /><span class="pull-right glyphicon glyphicon-arrow-right"></span>
+                                @* <a class="JSbutton col-xs-12 btn btn-lg" href="registration_step2.html"><span class="pull-left">Create Profile</span><span class="pull-right glyphicon glyphicon-arrow-right"></span></a>*@
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- Registration Process Ends -->
+    @* }*@
+
+
+</body>
+</html>
+<script type="text/jscript">
+    //get file size
+
+    //$("#btnSubmit").on("click", function () {
+    //    debugger;
+    //    if ($('#fileToUpload').val() == "") {
+    //        $("#spanfile").html("Please upload file");
+    //        return false;
+    //    }
+    //    else {
+    //        var chkfile = false;
+    //    }
+    //});
+
+    //function GetFileSize(fileid) {
+    //    try {
+    //        debugger;
+    //        var fileSize = 0;
+    //        //for IE
+    //        if ('undefined' == typeof (document.body.style.maxHeight)) {/* }*/
+    //            //if ($.browser.msie) {
+    //            //before making an object of ActiveXObject,
+    //            //please make sure ActiveX is enabled in your IE browser
+    //            var objFSO = new ActiveXObject("Scripting.FileSystemObject"); var filePath = $("#" + fileid)[0].value;
+    //            var objFile = objFSO.getFile(filePath);
+    //            var fileSize = objFile.size; //size in kb
+    //            fileSize = fileSize / 1048576; //size in mb
+    //        }
+    //        //for FF, Safari, Opeara and Others
+    //        else {
+    //            fileSize = $("#" + fileid)[0].files[0].size //size in kb
+    //            fileSize = fileSize / 1048576; //size in mb
+    //        }
+    //        return fileSize;
+    //    }
+    //    catch (e) {
+    //        alert("Error is :" + e);
+    //    }
+    //}
+
+    ////get file path from client system
+    //function getNameFromPath(strFilepath) {
+    //    var objRE = new RegExp(/([^\/\\]+)$/);
+    //    var strName = objRE.exec(strFilepath);
+
+    //    if (strName == null) {
+    //        return null;
+    //    }
+    //    else {
+    //        return strName[0];
+    //    }
+    //}
+
+
+
+
+
+    //function checkfile() {
+    //    debugger;
+    //    var file = getNameFromPath($("#fileToUpload").val());
+    //    if (file != null) {
+    //        var extension = file.substr((file.lastIndexOf('.') + 1));
+    //        // alert(extension);
+    //        switch (extension) {
+    //            case 'jpg':
+    //            case 'png':
+    //            case 'gif':
+    //            case 'pdf':
+    //            case 'doc':
+    //                flag = true;
+    //                break;
+    //            default:
+    //                flag = false;
+    //        }
+    //    }
+    //    if (flag == false) {
+    //        $("#spanfile").text("You can upload only jpg,png,gif,pdf extension file");
+    //        return false;
+    //    }
+    //    else {
+    //        var size = GetFileSize('fileToUpload');
+    //        if (size > 3) {
+    //            $("#spanfile").text("You can upload file up to 3 MB");
+    //            return false;
+    //        }
+    //        else {
+    //            $("#spanfile").text("");
+    //            return true;
+    //        }
+    //    }
+    //}
+
+    //$(function () {
+    //    $("#fileToUpload").change(function () {
+    //        debugger;
+    //        checkfile();
+    //    });
+    //});
+</script>
+<script type="text/javascript">
+       $("#btnSubmit").click(function()
+       {
+
+
+           var FullName = $("#FullName").val();
+           var EmailID = $("#EmailID").val();
+           var Password = $("#Password").val();
+           var MobileNumber = $("#MobileNumber").val();
+           var TotalExYear = $("#TotalExYear").val();
+           //var Gender = $('#Gender').val();
+           var radioValue = "";
+           var rGrp = $("input[name=Gender]");
+
+           rGrp.click(function () {
+               var checkedRadio = rGrp.filter(":checked");
+               $("#radioValue").text(checkedRadio.val());
+
+           });
+
+        var valid='Y';
+        debugger;
+           if (FullName =="")
+        {
+            alert('Please enter Name');
+            valid = 'N';
+        }
+           if (EmailID =="")
+        {
+            alert('Please fill Eailid');
+            valid = 'N';
+        }
+           if (Password =="")
+        {
+               alert('Please fill Password');
+            valid = 'N';
+        }
+           if (MobileNumber=="")
+        {
+               alert('Please fill MobileNumber');
+            valid = 'N';
+        }
+
+        if(valid == 'Y')
+        {
+            if (window.FormData !== undefined)
+            {
+                var FileUploadResume = $("#FileUploadResume").get(0);
+                var FileResume= FileUploadResume.files;
+
+
+                //if (FileResume.length != 0 )
+                //{
+                //    valid = 'Y';
+                //}
+                //else{
+                //    valid = 'N';
+                //}
+                // Create FormData object
+                var fileData = new FormData();
+
+                // Looping over all files and add it to FormData object
+                for (var i = 0; i < FileResume.length; i++) {
+                    fileData.append(EmailID + FileResume[i].name, FileResume[i]);
+
+                }
+
+            }
+            if(valid == 'Y')
+            {
+
+                fileData.append('FullName', FullName);
+                fileData.append('EmailID', EmailID);
+                fileData.append('Password', Password);
+                fileData.append('MobileNumber', MobileNumber);
+                fileData.append('TotalExYear', TotalExYear);
+                fileData.append('radioValue', radioValue);
+                $.ajax({
+                    type:'POST',
+                    url:'@Url.Action("SavePersonalDetails")',
+                    dataType:'Json',
+                    contentType: false,
+                    processData: false,
+                    data:fileData,
+                    async:true,
+                    success:function(res)
+                    {
+                        debugger;
+
+                        if(res)
+                        {
+
+                            window.location.href ="@Url.Action("EmploymentDetails")";
+                        }
+                        else
+                        {
+                            alert("There is an error occured" + er.message);
+                             window.location.href ="@Url.Action("PersonalDetails")";
+                        }
+
+                    },
+                    error:function(er)
+                    {
+                        window.location = "@Url.Action("PersonalDetails")";
+                    }
+                });
+            }
+            else{
+                //alert("Select Policy document");
+            }
+
+        }
+    });
+
+
+
+</script>
+

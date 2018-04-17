@@ -1,0 +1,614 @@
+html {  box-sizing: border-box;height:100%;}
+*, *:before, *:after {box-sizing: inherit;}
+body {font-family: 'Open Sans', sans-serif;height:100%;}
+canvas {-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;}
+.tpContainer {margin:auto;width:100%;box-sizing:border-box;}
+.mainBGHP {background:url(../images/main_banner.jpg) top  center no-repeat;background-size:cover;}
+.topContainer {background-color: rgba(0, 0, 0, .5);display:block;}
+.tpRightNav ul {padding:0px;margin:0px;margin-bottom:0px !important;}
+.tpRightNav li {list-style:none;display:inline-block;}
+.tpRightNav li a {padding: 18px 15px 15px 15px;color:#fff;display:block;text-decoration:none;}
+.tpRightNav li a:hover {background-color: rgba(0, 0, 0, .4);}
+.tpRightNav .dropdown-menu {width:235px;border-radius:0px;background:#000;padding-top:15px;padding-bottom:15px;}
+.tpRightNav li .signupBtn {border-radius:0px;background:#af9930;color:#FFF;padding:7px 15px;}
+.tpRightNav li .signupBtn:hover {border-radius:0px;background:#af9930;color:#FFF;padding:7px 15px;}
+.tpRightNav .sf {font-size:10px;color:#fff;position:relative;}
+.tpRightNav .sf a {padding:5px 0px;position:absolute;right:0px;top:0px;}
+.tpRightNav .sf label {padding-top:5px;}
+.tpRightNav .sf label input {margin-top:2px;}
+.tpRightNav .dropdown-menu .btn-login {background:#ddb240;color:#000;border:0px;padding:10px;}
+.tpRightNav .dropdown-menu .btn-default {background:#666666;color:#fff;border:0px;padding:10px;}
+.tpRightNav .signIn li {display:block !important;}
+.tpRightNav .signIn li a:hover {color:#fff}
+.logo {text-align:center;font-size:50px;text-shadow: 3px 3px 0 rgba(0, 0, 0, .35);font-weight:800;color:#fff;box-sizing:border-box;padding:50px 0px 5px 0px;font-family: 'Montserrat', sans-serif;}
+.logo_small {text-align:center;font-size:20px;text-shadow: 2px 2px 0 rgba(0, 0, 0, .20);font-weight:800;color:#fff;box-sizing:border-box;padding:0px ;font-family: 'Montserrat', sans-serif;text-decoration:none;position:absolute;white-space:nowrap;top:13px;left:40px;}
+.logo_small:hover {color:#fff;text-decoration:none;}
+.headingInnerMain {text-align:center;font-size:35px;text-shadow: 3px 3px 0 rgba(0, 0, 0, .35);font-weight:300;color:#fff;box-sizing:border-box;padding:30px 0px 30px 0px;font-family: 'Montserrat', sans-serif;}
+.headingInnerMain span {font-weight:800;}
+.searchLine {text-align:center;font-size:25px;font-weight:300;color:#fff;box-sizing:border-box;padding:0px 0px 15px 0px;}
+.searchLine span {font-weight:800;text-transform:uppercase;}
+.searchMain {box-sizing:border-box;padding:0px 0px 15px 0px;}
+.noPaddingLR {padding-right:0px !important;padding-left:0px !important;}
+.noPaddingL {padding-left:0px !important;}
+.noPaddingR {padding-right:0px !important;}
+.padding-left-15 {padding-left:15px;}
+.padding-right-15 {padding-right:15px;}
+.margin-bottom-5 {margin-bottom:5px;}
+.margin-bottom-10 {margin-bottom:10px;}
+.margin-bottom-20 {margin-bottom:20px;}
+.margin-bottom-30 {margin-bottom:30px;}
+.margin-top-5 {margin-top:5px;}
+.margin-top-10 {margin-top:10px;}
+.margin-top-20 {margin-top:20px;}
+.margin-top-30 {margin-top:30px;}
+.margin-left-15 {margin-left:15px;}
+.margin-right-15 {margin-right:15px;}
+.overflowCustom {overflow:hidden;}
+hr {border-color:#bfbfbf;}
+.searchMain {}
+.searchMain .searchKey {border:0px;border-radius:6px 0px 0px 6px;padding:0px 9px 0px 20px;border-right:1px solid #bfbfbf;height:45px;font-weight:300;}
+.searchMain .searchLocation {border:0px;border-radius:0px;padding:12px 9px;height:45px;font-weight:300;width:100%;}
+.searchMain .searchLocation .caret {margin-top:8px;}
+.searchMain .searchMainButton {background:#ddb240;color:#fff;font-size:16px;font-weight:600;border:0px;border-radius:0px 6px 6px 0px;padding:12px 25px;height:45px;display:block;text-align:center;text-decoration:none;}
+.browseJobs {margin-bottom:50px;}
+.browseJobs button {border:0px;background:none;color:#fff;font-size:13px;}
+.browseJobs .bJobs a {color:#fff;padding:0px 15px;display:inline-block;text-decoration:none;font-weight:400;font-size:12px;}
+#content {width:0px;height:20px;overflow:hidden;}
+.styleResume {background:url(../images/smart_ResumeBG.png) top center no-repeat;height:90px;background-size:contain;text-align:center;color:#fff;}
+.styleResume h2 {font-weight:300;font-size:25px;}
+.styleResume a {font-size:11px;font-weight:600;color:#fff;text-transform:uppercase;font-weight:700;}
+.styleResume .srInner {text-align:left;padding-left:22%;}
+
+.steps {margin-bottom:20px;}
+.steps ul {margin:0px;padding:0px;text-align:center;}
+.steps li {list-style:none;display:inline-block;padding:10px 8px;color:#999;}
+.steps li.active {border-bottom:solid 3px #999;color:#000}
+
+.baseregister {background:#fff;box-sizing:border-box;padding:15px;border:1px solid #f1f1f1;box-shadow: 0px 3px 5px 1px rgba(0,0,0,.15);padding-top:25px;border-radius:9px;}
+.signupLogin {margin-top:20px;}
+
+.benifits {background:url(../images/bgBenefits.png);width:100%;padding-bottom:40px;}
+.benifits h1 {font-size:50px;font-weight:300;text-align:center;padding:0px 40px 25px 40px;display:block;}
+.benifits h5 {font-size:18px;font-weight:800;text-align:center;padding:0px 40px;display:block;text-transform:uppercase;}
+.benifits .nav-tabs {border-bottom:none;}
+.benifits .customNavTabs {text-align:center;background:#fff;border:1px solid #e1e1e1;border-radius:5px;overflow:hidden;}
+.benifits .customNavTabs ul {}
+.benifits .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {background:#af9930;color:#fff;border:0px;}
+.benifits .nav-tabs > li > a {border:0px;padding:15px 0px;}
+.benifits .nav-tabs > li > a {margin-right:0px;border-radius:0px;color:#000;}
+.benifits .customProfile_JS {position:relative;padding:10px 15px 10px 110px;color:#000;font-size:14px;margin-top:30px;}
+.benifits .customProfile_JS h2 {font-size:20px;font-weight:600;color:#2eab3c;padding:0px;margin:0px;padding-bottom:6px;}
+.benifits .customProfile_JS img {width:100%;max-width:60px;height:auto;position:absolute;top:50%;left:30px;margin-top:-30px;}
+.benifits .videoResumwe_JS {position:relative;padding:10px 15px 10px 110px;color:#000;font-size:14px;margin-top:30px;}
+.benifits .videoResumwe_JS h2 {font-size:20px;font-weight:600;color:#e8b838;padding:0px;margin:0px;padding-bottom:6px;}
+.benifits .videoResumwe_JS img {width:100%;max-width:60px;height:auto;position:absolute;top:50%;left:30px;margin-top:-30px;}
+.benifits .applicationTracking_JS {position:relative;padding:10px 15px 10px 110px;color:#000;font-size:14px;margin-top:30px;}
+.benifits .applicationTracking_JS h2 {font-size:20px;font-weight:600;color:#52c3e5;padding:0px;margin:0px;padding-bottom:6px;}
+.benifits .applicationTracking_JS img {width:100%;max-width:60px;height:auto;position:absolute;top:50%;left:30px;margin-top:-30px;}
+.benifits .JSbutton {border:0px;background:#af9930;color:#fff;margin-top:40px;margin-bottom:30px;}
+
+.registration input {font-weight:300;color:#000;height:50px;box-shadow: 0px 3px 5px 1px rgba(0,0,0,.15);}
+.registration label {font-size:14px;font-weight:600;line-height:20px;padding-left:0px;padding-top:7px;}
+.registration .lbl {font-size:11px;font-weight:300;line-height:20px;padding-left:15px;padding-top:7px;}
+.registration .JSbutton {border:0px;background:#af9930;color:#fff;margin-top:15px;margin-bottom:20px;}
+.registration .linkedIn {text-align:center;margin-top:50px;margin-bottom:15px;}
+.registration .uploadResume {position:relative;}
+.registration .uploadResume button {position:absolute;right:25px;top:20px;border:none;background:none;}
+.registration .registrationSteps {font-weight:300;}
+.registration .registrationSteps p {font-size:13px;font-weight:400;}
+.registration .registrationSteps i {font-size:150px;}
+.registration .registrationSteps a {display:block;border:none;margin:auto;margin-bottom:20px;padding:10px 30px;cursor:pointer;}
+.registration .registrationSteps a.fresher {background:#2eab3c;color:#fff;font-weight:600;text-transform:uppercase;}
+.registration .registrationSteps a.professional {background:#52c3e5;color:#fff;font-weight:600;text-transform:uppercase;}
+.registration .registrationSteps a:hover {text-decoration:none;}
+.registration h2 {font-size:22px;font-weight:300;text-align:center;padding:10px 25px;display:block;line-height:35px;margin-bottom:50px;} 
+.registration h2 span {font-weight:800;}
+.registration h3 {font-size:30px;font-weight:300;text-align:center;padding:25px 40px;display:block;line-height:50px;margin-bottom:50px;} 
+.registration h3 span {font-weight:800;}
+.registration h4 {font-size:30px;font-weight:300;text-align:center;padding:25px 40px;display:block;line-height:50px;margin-bottom:50px;} 
+.registration .annualSalary {margin-bottom:10px;clear:both;}
+.registration .moneyname {padding-top:9px;color:#666;}
+.registration label span {color:#F00;}
+.registration .dropdown-menu {max-height:200px;overflow:auto;}
+.registration .dropdown button {position:relative;padding-top:10px;padding-bottom:10px;}
+.registration .dropdown span {position:absolute;right:10px;top:20px;}
+.registration .checkbox {height:20px;box-shadow:none;border-radius:5px;padding-top:0px;padding-left:20px;margin-top:0px;font-weight:300;}
+.registration .checkbox label {font-weight:300;}
+.registration .currentLocation {margin-bottom:10px;}
+.registration .noticePeriod {}
+.registration .profile_picture {}
+.registration .profile_picture img {max-width:150px;width:100%;height:auto;border:1px solid #e1e1e1;background:#fff;}
+.registration .profiletxt {padding-bottom:40px;}
+.registration .smapletxt p {color:#999;padding-top:7px;}
+.registration p {color:#999;padding-top:4px;padding-bottom:4px;margin-bottom:0px;}
+.registration .sf {font-size:10px;color:#fff;position:relative;margin-top:15px;}
+.registration .sf a {padding:5px 0px;position:absolute;right:0px;top:0px;color:#000;}
+.registration .sf label {padding-top:1px;color:#999;font-size:12px;}
+.registration .sf label input {margin-top:4px;height:auto;color:#999;box-shadow:none;}
+
+.ctm_radio {border:1px solid #ccc;overflow:hidden;box-sizing:border-box;border-radius:6px;}
+.ctm_radio input[type=radio] {visibility:hidden;height:auto;}
+.ctm_radio label {margin-bottom:0px;box-sizing:border-box;cursor:pointer;position:relative;border-right:1px solid #e1e1e1;text-align:center;color:#000;font-weight:300;font-size:13px;padding-top:6px !important;}
+.ctm_radio label:last-child {border-right:none;} 
+.btnAmPm {background-color: #ffffff;color: #000;height: 36px;border-color: #cccccc !important;box-sizing:border-box;padding-top:0px !important;}
+.btnAmPm_selected {background-color: #af9930 !important;color:#ffffff !important;box-sizing:border-box;font-weight:600 !important;}
+.forMultiselect input {height:auto;margin-right:10px;box-shadow:none;border-radius:5px;}
+.itSkills {padding-top:0px;}
+.itSkills input {height:41px;box-shadow:none;}
+.itSkills label {color:#666;font-size:12px;}
+.itSkills .skillinput {border-radius:5px 0px 0px 5px;border-right:0px;}
+.itSkills .versioninput {border-radius:0px;border-right:0px;}
+.itSkills .yearbutton {border-radius:0px;font-weight:300;}
+.itSkills .expbutton {border-radius:0px 5px 5px 0px;border-left:0px;font-weight:300;}
+.itSkills a {color:#666;margin-top:5px;font-size:12px;display:block;}
+.itSkills a:hover {color:#333;}
+
+.dob label {color:#666;font-size:12px;}
+.dob .yearbuttondob {border-radius:5px 0px 0px 5px;border-right:0px;font-weight:300;}
+.dob .monthbuttondob {border-radius:0px;font-weight:300;}
+.dob .daybutton {border-radius:0px 5px 5px 0px;border-left:0px;font-weight:300}
+.mailing {margin-bottom:10px;}
+.mailing label {color:#666;font-size:12px;}
+
+
+.btn-file {position: relative;overflow: hidden;background:#af9930;color:#fff;padding:8px 20px;border:0px;font-size:15px;font-family: 'Open Sans', sans-serif;}
+.btn-file:hover {background:#af9930;color:#fff;padding:8px 20px;border:0px;	} 
+.btn-file input[type=file] {position: absolute;top: 0;right: 0;min-width: 100%;min-height: 100%;font-size: 100px;text-align: right;filter: alpha(opacity=0);opacity: 0;outline: none;background: white;cursor: inherit;display: block;}
+
+.trends {background:url(../images/BgTrend.png) center center no-repeat;background-size:500px 420px;width:100%;padding-bottom:40px;}
+.trends h1 {font-size:50px;font-weight:300;text-align:center;padding:25px 40px;display:block;}
+.trends img {max-width:1000px;width:100%;height:auto;}
+
+.companies {background:#e4ebf5;width:100%;padding-bottom:40px;}
+.companies h1 {font-size:50px;font-weight:300;text-align:center;padding:25px 40px 10px 40px;display:block;}
+.companies h4 {font-size:20px;font-weight:800;text-align:center;padding:0px 40px 20px 40px;display:block;letter-spacing:10px;color:#5b5e62;text-transform:uppercase;}/* carousel */
+.companies .media-carousel {margin-bottom: 0;padding: 0 40px 30px 40px;margin-top: 30px;}
+/* Previous button  */
+.companies .media-carousel .carousel-control.left {left:-12px;background-image: none;background: none repeat scroll 0 0 #222222;border: 4px solid #FFFFFF;border-radius: 23px 23px 23px 23px;height:40px;width:40px;margin-top:0px}
+/* Next button  */
+.companies .media-carousel .carousel-control.right {right: -12px !important;background-image: none;background: none repeat scroll 0 0 #222222;border: 4px solid #FFFFFF;border-radius: 23px 23px 23px 23px;height:40px;width:40px;margin-top:0px}
+/* Changes the position of the indicators */
+.companies .media-carousel .carousel-indicators {right: 50%;top: auto;bottom: 0px;margin-right: -19px;}
+/* Changes the colour of the indicators */
+.companies .media-carousel .carousel-indicators li {background: #c0c0c0;}
+.companies .media-carousel .carousel-indicators .active {background: #333333;}
+.companies .media-carousel img {max-width:120px;width:100%;height:auto;}
+/* End carousel */
+.text-align-center {text-align:center;}
+.text-align-right {text-align:right;}
+.text-align-left {text-align:left;}
+
+.footer	{background:url(../images/BgWorldMap.png) center center no-repeat #252831;background-size:500px 300px;width:100%;padding:50px;box-sizing:border-box;}
+.footer h1 {font-size:30px;color:#fff;font-weight:300;text-align:center;padding:25px 0px 20px 0px;display:block;box-sizing:border-box;}
+.footer input {padding:15px;color:#333;font-size:15px;font-weight:500;height:50px;}
+.footer .subscribe {position:relative;}
+.footer .subscribe button {position:absolute;top:50%;margin-top:-12px;right:25px;border:0px;background:none;font-size:22px;}
+.footer .socialButton {margin-top:40px;margin-bottom:40px;}
+.footer .socialButton img {max-width:175px;width:100%;height:auto;}
+.footer .footerLinks {margin-bottom:40px;text-align:center;}
+.footer .footerLinks ul {margin:0px;padding:0px;color:#fff;}
+.footer .footerLinks li {list-style:none;display:inline-block;font-size:13px;}
+.footer .footerLinks li a {color:#fff;text-decoration:none;padding:7px 20px;font-size:13px;}
+.footer .copyright {color:rgba(255, 255, 255, .5);font-size:10px;}
+.footer .copyright .txt {padding-top:10px;}
+.footer .copyright img {padding-left:15px;max-width:40px;width:100%;height:auto;vertical-align:middle;}
+
+.apply {background:#ddb240 !important;border:none;color:#fff !important;font-size:14px !important;}
+.btn-Apply {border:2px solid #fff !important; padding:4px 30px;background-color: rgba(0, 0, 0, .2) !important;color:#fff;transition: 0.3s;text-transform:uppercase;font-size:20px;}
+.btn-Apply:hover {background-color: rgba(0, 0, 0, .6) !important;color:#fff;}
+
+/* Left Navigation CSS */
+.sidenav {height: 100%;width: 0;position: fixed;z-index: 1;top: 0;left: 0;background-color: #111;overflow-x: hidden;transition: 0.5s;padding-top: 60px;}
+.sidenav a {padding: 8px 8px 8px 32px;text-decoration: none;font-size: 18px;color: #818181;display: block;transition: 0.3s;}
+.sidenav a:hover, .offcanvas a:focus{color: #f1f1f1;}
+.sidenav .closebtn {position: absolute;top: 0;right: 25px;font-size: 36px;margin-left: 50px;}
+#main {transition: margin-left .5s;padding:18px 16px 16px 16px;color:#fff;position:relative;}
+
+.refine button.accordion {background-color: #fff;color: #444;cursor: pointer;padding: 18px;width: 100%;text-align: left;border: none;outline: none;transition: 0.4s;font-weight:700;}
+.refine button.accordion.active::after {content: "−";}
+.refine button.accordion::after {color: #777;content: "+";float: right;font-size: 13px;font-weight: bold;margin-left: 5px;}
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.refine button.accordion.active, button.accordion:hover {background-color: #f1f1f1;}
+/* Style the accordion panel. Note: hidden by default */
+.refine div.panel {padding: 0 25px;background-color: white;display: none;border-radius:0px;border:0px;margin-bottom:10px;box-shadow:none;}
+.refine a {display:block;padding:7px 0px;color:#333;position:relative;border-bottom:1px solid #f1f1f1;}
+.refine a:hover {color:#333;text-decoration:underline;}
+.refine a span {right:0px;top:10px;color:#CCC;font-size:12px;position:absolute;text-decoration:none;}
+
+.bootstrap-select {
+  width: 220px \0;
+  /*IE9 and below*/
+}
+.bootstrap-select > .dropdown-toggle {
+  width: 100%;
+  padding-right: 25px;
+  z-index: 1;
+}
+.bootstrap-select > select {
+  position: absolute !important;
+  bottom: 0;
+  left: 50%;
+  display: block !important;
+  width: 0.5px !important;
+  height: 100% !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+  border: none;
+}
+.bootstrap-select > select.mobile-device {
+  top: 0;
+  left: 0;
+  display: block !important;
+  width: 100% !important;
+  z-index: 2;
+}
+
+/* For select */
+select.bs-select-hidden,
+select.selectpicker {
+    display: none!important
+}
+
+.bootstrap-select {
+    width: 220px\9
+}
+
+.bootstrap-select>.dropdown-toggle {
+    width: 100%;
+    padding-right: 25px;
+    z-index: 1
+}
+
+.bootstrap-select>.dropdown-toggle.bs-placeholder,
+.bootstrap-select>.dropdown-toggle.bs-placeholder:active,
+.bootstrap-select>.dropdown-toggle.bs-placeholder:focus,
+.bootstrap-select>.dropdown-toggle.bs-placeholder:hover {
+    color: #999
+}
+
+.bootstrap-select>select {
+    position: absolute!important;
+    bottom: 0;
+    left: 50%;
+    display: block!important;
+    width: .5px!important;
+    height: 100%!important;
+    padding: 0!important;
+    opacity: 0!important;
+    border: none
+}
+
+.bootstrap-select>select.mobile-device {
+    top: 0;
+    left: 0;
+    display: block!important;
+    width: 100%!important;
+    z-index: 2
+}
+
+.error .bootstrap-select .dropdown-toggle,
+.has-error .bootstrap-select .dropdown-toggle {
+    border-color: #b94a48
+}
+
+.bootstrap-select.fit-width {
+    width: auto!important
+}
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 220px
+}
+
+.bootstrap-select .dropdown-toggle:focus {
+    outline: thin dotted #333!important;
+    outline: 5px auto -webkit-focus-ring-color!important;
+    outline-offset: -2px
+}
+
+.bootstrap-select.form-control {
+    margin-bottom: 0;
+    padding: 0;
+    border: none
+}
+
+.bootstrap-select.form-control:not([class*=col-]) {
+    width: 100%
+}
+
+.bootstrap-select.form-control.input-group-btn {
+    z-index: auto
+}
+
+.bootstrap-select.form-control.input-group-btn:not(:first-child):not(:last-child)>.btn {
+    border-radius: 0
+}
+
+.bootstrap-select.btn-group:not(.input-group-btn),
+.bootstrap-select.btn-group[class*=col-] {
+    float: none;
+    display: inline-block;
+    margin-left: 0
+}
+
+.bootstrap-select.btn-group.dropdown-menu-right,
+.bootstrap-select.btn-group[class*=col-].dropdown-menu-right,
+.row .bootstrap-select.btn-group[class*=col-].dropdown-menu-right {
+    float: right
+}
+
+.form-group .bootstrap-select.btn-group,
+.form-horizontal .bootstrap-select.btn-group,
+.form-inline .bootstrap-select.btn-group {
+    margin-bottom: 0
+}
+
+.form-group-lg .bootstrap-select.btn-group.form-control,
+.form-group-sm .bootstrap-select.btn-group.form-control {
+    padding: 0
+}
+
+.form-group-lg .bootstrap-select.btn-group.form-control .dropdown-toggle,
+.form-group-sm .bootstrap-select.btn-group.form-control .dropdown-toggle {
+    height: 100%;
+    font-size: inherit;
+    line-height: inherit;
+    border-radius: inherit
+}
+
+.form-inline .bootstrap-select.btn-group .form-control {
+    width: 100%
+}
+
+.bootstrap-select.btn-group.disabled,
+.bootstrap-select.btn-group>.disabled {
+    cursor: not-allowed
+}
+
+.bootstrap-select.btn-group.disabled:focus,
+.bootstrap-select.btn-group>.disabled:focus {
+    outline: 0!important
+}
+
+.bootstrap-select.btn-group.bs-container {
+    position: absolute;
+    height: 0!important;
+    padding: 0!important
+}
+
+.bootstrap-select.btn-group.bs-container .dropdown-menu {
+    z-index: 1060
+}
+
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+    text-align: left
+}
+
+.bootstrap-select.btn-group .dropdown-toggle .caret {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    margin-top: -2px;
+    vertical-align: middle
+}
+
+.bootstrap-select.btn-group[class*=col-] .dropdown-toggle {
+    width: 100%
+}
+
+.bootstrap-select.btn-group .dropdown-menu {
+    min-width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.bootstrap-select.btn-group .dropdown-menu.inner {
+    position: static;
+    float: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none
+}
+
+.bootstrap-select.btn-group .dropdown-menu li {
+    position: relative
+}
+
+.bootstrap-select.btn-group .dropdown-menu li.active small {
+    color: #fff
+}
+
+.bootstrap-select.btn-group .dropdown-menu li.disabled a {
+    cursor: not-allowed
+}
+
+.bootstrap-select.btn-group .dropdown-menu li a {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.bootstrap-select.btn-group .dropdown-menu li a.opt {
+    position: relative;
+    padding-left: 2.25em
+}
+
+.bootstrap-select.btn-group .dropdown-menu li a span.check-mark {
+    display: none
+}
+
+.bootstrap-select.btn-group .dropdown-menu li a span.text {
+    display: inline-block
+}
+
+.bootstrap-select.btn-group .dropdown-menu li small {
+    padding-left: .5em
+}
+
+.bootstrap-select.btn-group .dropdown-menu .notify {
+    position: absolute;
+    bottom: 5px;
+    width: 96%;
+    margin: 0 2%;
+    min-height: 26px;
+    padding: 3px 5px;
+    background: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    pointer-events: none;
+    opacity: .9;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.bootstrap-select.btn-group .no-results {
+    padding: 3px;
+    background: #f5f5f5;
+    margin: 0 5px;
+    white-space: nowrap
+}
+
+.bootstrap-select.btn-group.fit-width .dropdown-toggle .filter-option {
+    position: static
+}
+
+.bootstrap-select.btn-group.fit-width .dropdown-toggle .caret {
+    position: static;
+    top: auto;
+    margin-top: -1px
+}
+
+.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
+    position: absolute;
+    display: inline-block;
+    right: 15px;
+    margin-top: 5px
+}
+
+.bootstrap-select.btn-group.show-tick .dropdown-menu li a span.text {
+    margin-right: 34px
+}
+
+.bootstrap-select.show-menu-arrow.open>.dropdown-toggle {
+    z-index: 1061
+}
+
+.bootstrap-select.show-menu-arrow .dropdown-toggle:before {
+    content: '';
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid rgba(204, 204, 204, .2);
+    position: absolute;
+    bottom: -4px;
+    left: 9px;
+    display: none
+}
+
+.bootstrap-select.show-menu-arrow .dropdown-toggle:after {
+    content: '';
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #fff;
+    position: absolute;
+    bottom: -4px;
+    left: 10px;
+    display: none
+}
+
+.bootstrap-select.show-menu-arrow.dropup .dropdown-toggle:before {
+    bottom: auto;
+    top: -3px;
+    border-top: 7px solid rgba(204, 204, 204, .2);
+    border-bottom: 0
+}
+
+.bootstrap-select.show-menu-arrow.dropup .dropdown-toggle:after {
+    bottom: auto;
+    top: -3px;
+    border-top: 6px solid #fff;
+    border-bottom: 0
+}
+
+.bootstrap-select.show-menu-arrow.pull-right .dropdown-toggle:before {
+    right: 12px;
+    left: auto
+}
+
+.bootstrap-select.show-menu-arrow.pull-right .dropdown-toggle:after {
+    right: 13px;
+    left: auto
+}
+
+.bootstrap-select.show-menu-arrow.open>.dropdown-toggle:after,
+.bootstrap-select.show-menu-arrow.open>.dropdown-toggle:before {
+    display: block
+}
+
+.bs-actionsbox,
+.bs-donebutton,
+.bs-searchbox {
+    padding: 4px 8px
+}
+
+.bs-actionsbox {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.bs-actionsbox .btn-group button {
+    width: 50%
+}
+
+.bs-donebutton {
+    float: left;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.bs-donebutton .btn-group button {
+    width: 100%
+}
+
+.bs-searchbox+.bs-actionsbox {
+    padding: 0 8px 4px
+}
+
+.bs-searchbox .form-control {
+    margin-bottom: 0;
+    width: 100%;
+    float: none
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {background:#ddb240 !important;border:#ddb240 !important;color:#fff !important;}
+.pagination > li > a {color:#a7823e; !important;}
+
+@media screen and (max-height: 450px) {
+	.sidenav {padding-top: 15px;}
+  	.sidenav a {font-size: 18px;}
+}
+
+
+@media screen and (max-width: 768px) {
+.searchMain {}
+.searchMain .searchKey {border:0px;border-radius:6px 0px 0px 6px;padding:0px 9px 0px 20px;border-right:1px solid #bfbfbf;height:45px;font-weight:300;}
+.searchMain .searchLocation {border:0px;border-radius:0px;padding:12px 9px;height:45px;font-weight:300;width:100%;}
+.searchMain .searchLocation .caret {margin-top:8px;}
+.searchMain .searchButton {background:#ddb240;color:#fff;font-size:14px;font-weight:600;border:0px;border-radius:0px 6px 6px 0px;padding:12px 9px;height:45px;width:100%;}
+.browseJobs button {border:0px;background:none;color:#fff;font-size:10px;}
+	
+	
+	
+}

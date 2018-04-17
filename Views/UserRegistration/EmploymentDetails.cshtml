@@ -1,0 +1,280 @@
+﻿@model BusinessModel.UserRegistrationEmployeMentModel
+@{
+        ViewBag.Title = "User Registration";
+        Layout = null;
+
+        List<SelectListItem> listNoticePeriod = new List<SelectListItem>();
+        listNoticePeriod.Add(new SelectListItem { Text = "15 Days or less", Value = "1" }) ;
+        listNoticePeriod.Add(new SelectListItem { Text = "1 Month", Value = "2" });
+        listNoticePeriod.Add(new SelectListItem { Text = "2 Months", Value = "3" });
+        listNoticePeriod.Add(new SelectListItem { Text = "3 Months", Value = "4" });
+        listNoticePeriod.Add(new SelectListItem { Text = "More than 3 Months", Value = "5" });
+        listNoticePeriod.Add(new SelectListItem { Text = "select", Value = "0", Selected = true });
+    }
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JobsBridge</title>
+
+    @*@Styles.Render("~/Content/css")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    @*@Styles.Render("~/bundles/jquery")*@
+
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/custom.css" rel="stylesheet" />
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800,900" rel="stylesheet">
+
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+    <script src="~/Content/js/modernizr.custom.js"></script>
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container tpContainer mainBGHP">
+        <div class="row">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Clients</a>
+                <a href="#">Contact</a>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 topContainer">
+                <div class="pull-left">
+                    <div id="main">
+                        <span style="cursor:pointer" class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>
+                        <a href="index.html" style="cursor:pointer" class="logo_small">Jobs Bridge</a>
+
+                    </div>
+                </div>
+                <div class="pull-right tpRightNav" style="display:none;">
+                    <ul>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" id="loginJobSeeker" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" href="#">Login</a>
+                            @*<ul class="dropdown-menu pull-right" aria-labelledby="loginJobSeeker">
+                                    <li class="noPaddingLR">
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="usr" placeholder="Email">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" id="pwd" placeholder="Password">
+                                            </div>
+                                            <div class="checkbox sf">
+                                                <label><input type="checkbox"> Stay Signed In</label><a href="">Forget Password</a>
+                                            </div>
+                                            <a type="submit" class="btn btn-block btn-login">Login</a>
+                                            <a type="submit" class="btn btn-block btn-default" href="registration.html">New User? Sign in Here</a>
+                                        </div>
+                                    </li>
+                                </ul>*@
+                        </li>
+                        <li><a href="#">For Employer</a></li>
+                    </ul>
+                </div>
+            </div><!-- Top Row of Navigation -->
+
+            <div class="col-xs-12 col-sm-12 col-md-12 headingInnerMain">
+                Upload Resume On <span>JobsBridge</span> Now!
+            </div><!-- logo -->
+
+        </div>
+    </div><!-- topHeader Ends -->
+    @using (Html.BeginForm("EmploymentDetails", "UserRegistration", FormMethod.Post))
+                {
+                    <div class="container benifits registration">
+                        <div class="row">
+                            <div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-ok"></span> &nbsp;@TempData["Message"]</div>
+                            <div class="col-xs-6 col-xs-offset-3 steps"><ul><li>Personal Details</li><li class="active">Employment</li><li>Education</li></ul></div>
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div class="col-xs-6 col-xs-offset-3 baseregister">
+                                    <div class="col-xs-12">
+                                        @*<form>*@
+                                        @Html.HiddenFor(x => x.UserID)
+
+                                        <div class="form-group">
+                                            <label>Current Designation <span>*</span></label>
+                                            @Html.DropDownListFor(x => Model.CurrentDesignation, Model.DesignationList, new { @class = "form-control", @placeholder = "CurrentDesignation" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Current Company <span>*</span></label>
+                                            @Html.DropDownListFor(x => Model.CurrentCompany, Model.CompanyList, new { @class = "form-control", @placeholder = "CurrentCompany" })
+                                        </div>
+                                        <div class="form-group annualSalary clearfix">
+                                            <label>Annual Salary <span>*</span></label>
+                                            <div class="col-xs-12 noPaddingLR">
+                                                <div class="col-xs-8 padding-lft">
+                                                    <select class="selectpicker" data-style="btn " title="Select Location" data-size="5">
+                                                        <option value="id">Active</option>
+                                                        <option value="ms">In-Active</option>
+                                                    </select>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="col-xs-4 noPaddingLR">
+                                                    <div class="dropdown ">
+                                                        @Html.DropDownListFor(x => Model.AnnualSalaryInlakhs, Model.ListAnnualSalaryInLakh, "-select-", new { @class = "form-control  dropdown - menu col - xs - 12" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-2 moneyname">
+                                                    Lakhs
+                                                </div>
+                                                <div class="col-xs-4 noPaddingLR">
+                                                    <div class="dropdown">
+                                                        @Html.DropDownListFor(x => Model.AnnualSalaryInThousand, Model.ListAnnualSalaryInThousand, "-Select-", new { @class = "form-control  dropdown - menu col - xs - 12" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-2 moneyname">
+                                                    Thousand
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group annualSalary clearfix">
+                                            <label>Working Since <span>*</span></label>
+                                            <div class="col-xs-12 noPaddingLR">
+                                                <div class="col-xs-4 noPaddingL">
+                                                    <div class="dropdown ">
+                                                        @Html.DropDownListFor(x => Model.WorkingSinceYear, Model.ListWorkingSince, "-Select-", new { @class = "form-control  dropdown - menu col - xs - 12" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-4 noPaddingLR">
+                                                    <div class="dropdown ">
+                                                        @Html.DropDownListFor(x => Model.WotkingSinceMonth, Model.ListWorkingMonth, "-Select-", new { @class = "form-control  dropdown - menu col - xs - 12" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-1 moneyname">
+                                                    to
+                                                </div>
+                                                <div class="col-xs-3 noPaddingLR">
+                                                    <div class="dropdown">
+                                                        @Html.DropDownListFor(x => Model.WorkingTo, Model.ListWorkingSince, "-Select-", new { @class = "form-control  dropdown - menu col - xs - 12" })
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group currentLocation clearfix">
+                                            <label>Current Location<span>*</span></label>
+                                            <div class="col-xs-12 noPaddingLR">
+                                                <div class="dropdown ">
+                                                    @Html.DropDownListFor(x => Model.CurrentLocationID, Model.CityList, new { @class = "form-control  dropdown - menu col - xs - 12" })
+                                                </div>
+                                                @*<div class="checkbox"><label><input type="checkbox" class="checkbox">Outside India</label></div>*@
+                                                <div class="checkbox"><label>@Html.CheckBoxFor(x => Model.OutSideIndia, new { @class = "checkbox" })Outside India </label></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group noticePeriod clearfix">
+                                            <label>Notice Period<span>*</span></label>
+                                            <div class="col-xs-12 noPaddingLR">
+                                                <div class="dropdown ">
+                                                    @Html.DropDownListFor(x => Model.NoticePeriod, listNoticePeriod, new { @class = "form-control  dropdown - menu col - xs - 12" })
+                                                </div>
+                                            </div>
+                                            @*  <div class="checkbox"><label><input type="checkbox" class="checkbox">Serving notice period</label></div>*@
+                                            <div class="checkbox"><label>@Html.CheckBoxFor(x => Model.ServeNoticePeriod, new { @class = "checkbox" })Serving notice period </label></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 noPaddingLR">
+                                        <input type="submit" class="JSbutton col-xs-12 btn btn-lg" value="Continue" /><span class="pull-right glyphicon glyphicon-arrow-right"></span>
+                                        @*<a class="JSbutton col-xs-12 btn btn-lg" href="registration_step3.html"><span class="pull-left">Continue</span><span class="pull-right glyphicon glyphicon-arrow-right"></span></a>*@
+                                    </div>
+                                    @*</form>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+    <div class="container footer">
+        <div class="row">
+            <h1>Subscribe with Us!</h1>
+            <div class="col-xs-6 col-xs-offset-3 subscribe">
+                <input type="text" class="form-control " placeholder="Enter Your Email Address">
+                <button><span class="glyphicon glyphicon-send"></span></button>
+            </div>
+            <div class="col-xs-4 col-xs-offset-4 socialButton">
+                <div class="col-xs-6 text-align-center"><a href=""><img src="~/Content/images/btn_facebook.png"></a></div><div class="col-xs-6 text-align-center"><a href=""><img src="~/Content/images/btn_gplus.png"></a></div>
+            </div>
+            <div class="col-xs-6 col-xs-offset-3 footerLinks">
+                <ul><li><a href="">Home</a></li><li>|</li><li><a href="">Contact Us</a></li><li>|</li><li><a href="">Feedback</a></li><li>|</li><li><a href="">FAQ</a></li><li>|</li><li><a href="">Terms of Use</a></li><li>|</li><li><a href="">Privacy Policy</a></li></ul>
+            </div>
+            <div class="col-xs-6 col-xs-offset-3 copyright">
+                <div class="col-xs-6 text-align-left txt">Copyright Jobs Bridge 2017. All Right Reserved</div>
+                <div class="col-xs-6 text-align-right"><a href=""><img src="~/Content/images/iconFacebook.png"></a><a href=""><img src="images/iconTwitter.png"></a></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            document.body.style.backgroundColor = "white";
+        }
+
+        // for browseJobs button
+        $("#animate").click(function () {
+            $("#content").animate(
+                { "width": "450px" },
+                "fast");
+        });
+
+        //  for Carousel
+        $(document).ready(function () {
+            $('#media').carousel({
+                pause: true,
+                interval: false,
+            });
+        });
+    </script>
+
+</body>
+</html>
+@*<script type="text/javascript">
+        $(document).ready(function () {
+
+
+            debugger;
+            $('#EmployementDetails_CurrentDesignation').empty().append($("<option></Option>").val('').html("Please Wait.."));
+            jQuery.support.cors = true;
+            $.ajax({
+                type: "GET",
+                url:"@System.Configuration.ConfigurationManager.AppSettings["baseUrl"].ToString()Master/DesignationList",
+                //dataType: "JSON",
+                type: "get",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                succuess: function (res) {
+                    debugger;
+                    $.each(res, function (i, p) {
+                        debugger;
+                        //$("#employementDetails_CurrentDesignation").append('option value="' + p.value + '">')
+                    });
+                },
+                error: function (ex) {
+                    debugger;
+
+
+                }
+            });
+        });
+    </script>*@
+
