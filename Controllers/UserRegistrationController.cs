@@ -31,18 +31,19 @@ namespace RojgarmitraSolution.Controllers
         string BaseUrl = ConfigurationManager.AppSettings["baseUrl"].ToString();
         //static readonly i  _repository = new CompaniesOtherMasterRepository(new DayBrokersEntities());
         // GET: UserRegistrations
-        public async Task<ActionResult> PersonalDetails()
+        public async Task<ActionResult> PersonalDetails(string EmpType)
         {
             List<OtherMasterModel> OtherMasterModel = await GetOthermaster();
             Session["OtherMasterModel"] = OtherMasterModel;
             UserRegistartionPersonalDetailsModel model = new UserRegistartionPersonalDetailsModel();
+            model.EmpType = EmpType;
             model.ListOfExper = GetOthermaster("EXPERINCE", OtherMasterModel);
             return View(model);
         }
         [HttpPost]
         public async Task<JsonResult> SavePersonalDetails()
         {
-            ResponseModel responseModel = new ResponseModel();
+            AccountModel responseModel = new AccountModel();
             UserRegistartionPersonalDetailsModel Model = new UserRegistartionPersonalDetailsModel();
             if (ModelState.IsValid)
             {
@@ -81,11 +82,12 @@ namespace RojgarmitraSolution.Controllers
                     if (ResponseMessage.IsSuccessStatusCode)
                     {
                         var response = ResponseMessage.Content.ReadAsStringAsync().Result;
-                        responseModel = JsonConvert.DeserializeObject<ResponseModel>(response);
+                        responseModel = JsonConvert.DeserializeObject<AccountModel>(response);
+                        DoLogin(responseModel, Model.Rememberme);
                         if (responseModel.status == true)
                         {
                             TempData["Message"] = "You have successfully created your profile with us";
-                            Session["userId"] = (responseModel.id);
+                            Session["userId"] = (responseModel.UserID);
                             object saveFile = new object();
                             saveFile = responseModel.data;
 
@@ -238,7 +240,7 @@ namespace RojgarmitraSolution.Controllers
         {
 
             var olist = ListOtherMaster.Where(x => x.MasterType.ToUpper() == MasterType.ToUpper()).ToList();
-            return new SelectList(olist, "Code", "Name");
+            return new SelectList(olist, "MasterID", "Name");
         }
 
         [HttpGet]
@@ -283,9 +285,9 @@ namespace RojgarmitraSolution.Controllers
                 {
                     var result = responseMessage.Content.ReadAsStringAsync().Result;
                     responseModel = JsonConvert.DeserializeObject<ResponseModel>(result);
-                    if (responseModel.status == true)
+                    if (responseModel.Status == true)
                     {
-                        Session["userId"] = (responseModel.id);
+                        Session["userId"] = (responseModel.Id);
                         TempData["Message"] = "You have successfully created your profile with us";
                         return RedirectToAction("EducationDetails");
                     }
@@ -357,10 +359,10 @@ namespace RojgarmitraSolution.Controllers
                 {
                     var response = ResponseMessage.Content.ReadAsStringAsync().Result;
                     responseModel = JsonConvert.DeserializeObject<ResponseModel>(response);
-                    TempData["Message"] = responseModel.message;
-                    Session["userId"] = (responseModel.id);
+                    TempData["Message"] = responseModel.Message;
+                    Session["userId"] = (responseModel.Id);
                     object saveFile = new object();
-                    saveFile = responseModel.data;
+                    saveFile = responseModel.Data;
                     try
                     {
                         for (int i = 0; i < files.Count; i++)
@@ -379,6 +381,7 @@ namespace RojgarmitraSolution.Controllers
                     }
                     catch (Exception ex)
                     {
+                        return Json(ex.Message);
 
                     }
                 }
@@ -390,76 +393,25 @@ namespace RojgarmitraSolution.Controllers
             AccountModel model = new AccountModel();
             return View(model);
         }
-        // GET: UserRegistration/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
-
-        // GET: UserRegistration/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        // POST: UserRegistration/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        private void DoLogin(AccountModel user, bool? RememberMe)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            PrincipalSerializeModel serializeModel = new PrincipalSerializeModel();
+            serializeModel.UserID = user.UserID;
+            serializeModel.FullName = user.FullName;
+            //serializeModel.LastName = user.Lname;
+            serializeModel.Roles = new string[] { user.Role };
+            serializeModel.Email = user.EmailID;
+            serializeModel.Mobile = user.MobileNumber;
+            serializeModel.Role = user.Role;
+            serializeModel.AuthTocken = user.AuthTocken;
+            //serializeModel.Logo = user.Logo;
+            //serializeModel.LoginCount = user.LoginCount.Value;
+            string userData = JsonConvert.SerializeObject(serializeModel);
+            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, user.EmailID, DateTime.Now, DateTime.Now.AddMinutes(60), RememberMe.Value, userData);
+            string encTicket = FormsAuthentication.Encrypt(authTicket);
+            HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+            Response.Cookies.Add(faCookie);
         }
 
-        // GET: UserRegistration/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: UserRegistration/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: UserRegistration/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: UserRegistration/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

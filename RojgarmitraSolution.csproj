@@ -439,6 +439,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Controllers\UserRegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -474,6 +475,7 @@
     <Content Include="Content\js\modernizr.custom.js" />
     <Content Include="Content\js\npm.js" />
     <Content Include="Content\js\utils.js" />
+    <Content Include="Content\js\Validation.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -577,12 +579,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\UserLogin.cshtml" />
-    <Content Include="Views\UserRegistration\UserProfile.cshtml" />
     <Content Include="Views\UserRegistration\PersonalDetails.cshtml" />
     <Content Include="Views\UserRegistration\EducationDetails.cshtml" />
     <Content Include="Views\UserRegistration\EmploymentDetails.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\UserProfile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

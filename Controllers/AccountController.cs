@@ -48,11 +48,11 @@ namespace RojgarmitraSolution.Controllers
         [HttpPost]
         public async Task<ActionResult> UserLogin(AccountModel accountModel)
         {
-           
+
             //accountModel.rememberme = accountModel.rememberme == ? true : accountModel.rememberme;
             if (!string.IsNullOrEmpty(accountModel.EmailID) && !string.IsNullOrEmpty(accountModel.Password))
             {
-                string url = _baseUrl + "Account/UserLogin?UserName=" + accountModel.EmailID + "&Password=" + accountModel.Password + "&rememberMe=" + accountModel.Rememberme + "";
+                string url = _baseUrl + "Account/Login?UserName=" + accountModel.EmailID + "&Password=" + accountModel.Password + "&rememberMe=" + accountModel.Rememberme + "";
                 using (HttpClient client = new HttpClient())
                 {
                     HttpResponseMessage responseMessage = await client.GetAsync(url);
@@ -63,7 +63,7 @@ namespace RojgarmitraSolution.Controllers
                         if (accountModel != null)
                         {
                             DoLogin(accountModel, accountModel.Rememberme);
-                            return View("UserProfile", accountModel);
+                            return RedirectToAction("Index", "UserProfile");
                         }
                         else
                         {
@@ -610,12 +610,23 @@ namespace RojgarmitraSolution.Controllers
             //serializeModel.Logo = user.Logo;
             //serializeModel.LoginCount = user.LoginCount.Value;
             string userData = JsonConvert.SerializeObject(serializeModel);
-            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, user.EmailID, DateTime.Now, DateTime.Now.AddMinutes(60), RememberMe.Value, userData);
+            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, user.EmailID, DateTime.Now, DateTime.Now.AddMinutes(5), RememberMe.Value, userData);
             string encTicket = FormsAuthentication.Encrypt(authTicket);
             HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
             Response.Cookies.Add(faCookie);
         }
+        [AllowAnonymous]
+        public ActionResult LogOff()
+        {
 
-       
+
+
+            Session.Clear();
+            Session.Abandon();
+            System.Web.Security.FormsAuthentication.SignOut();
+            return RedirectToAction("UserLogin", "Account", new { area = "" });
+
+        }        
+
     }
 }

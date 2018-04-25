@@ -110,7 +110,7 @@
                     <div class="col-xs-12">
                         @*<form>*@
                         <div class="form-group">
-                            @Html.HiddenFor(x=>x.UserId)
+                            @Html.HiddenFor(x => x.UserId)
                             <label>Add photo to your profile</label>
                             <div class="col-xs-12 noPaddingLR">
                                 <div class="col-xs-3 profile_picture noPaddingL">
@@ -126,7 +126,8 @@
                                         <div class="col-xs-3 noPaddingL">
                                             <div class="form-group">
                                                 <span class="btn btn-default btn-file">
-                                                    Browse <input type="file" id="FileUploadImage" accept=".PNG,.JPG,.JPEG" />
+                                                    Browse <input type="file" id="FileUploadImage" onblur="validateSize()" accept=".PNG,.JPG,.JPEG" />
+                                                    <label id="spanfile" hidden="hidden" class="error"></label>
                                                 </span>
                                                 <br />
                                                 @*  @Html.ValidationMessageFor(m => m.Files, "", new { @class = "error" })*@
@@ -309,7 +310,7 @@
          //upload
         $("#btnSubmit").click(function()
         {
-            debugger; 
+            debugger;
 
             var ProfessionalExperience = $("#ProfessionalExperience").val();
             var HighestQualification = $("#HighestQualification").val();
@@ -318,9 +319,7 @@
             var University_College = $("#University_College").val();
             var CourseType = $("#CourseType").val();
             var PassingYear = $('#PassingYear').val();
-
             var valid = 'Y';
-
 
         debugger;
             if (HighestQualification =="")
@@ -350,23 +349,11 @@
             {
                 var ImageUpload = $("#FileUploadImage").get(0);
                 var ImageFile = ImageUpload.files;
-
-                //if (ImageFile.length != 0 )
-                //{
-                //    valid = 'Y';
-                //}
-                //else{
-                //    valid = 'N';
-                //}
-                // Create FormData object
                 var fileData = new FormData();
-
                 // Looping over all files and add it to FormData object
                 for (var i = 0; i < ImageFile.length; i++) {
                     fileData.append(ImageFile[i].name, ImageFile[i]);
-
                 }
-
 
             }
             if(valid == 'Y')
@@ -390,7 +377,7 @@
                     {
                         if(res)
                         {
-                            window.location.href = "@Url.Action("UserProfile")";
+                            window.location.href = "@Url.Action("Index","UserProfile")";
                         }
                         else
                         {
@@ -412,9 +399,95 @@
 
         }
     });
+        function validateSize() {
+            debugger;
+            if ($('#FileUploadImage').val() == "") {
+                $("#spanfile").show(true);
+                $("#spanfile").html("Please upload Image");
+                return false;
+            }
+            else {
+                $("#spanfile").show(true);
+                checkfile();
+            }
+        }
+
+        function GetFileSize(fileid) {
+            try {
+                debugger;
+                var fileSize = 0;
+                //for IE
+                if ('undefined' == typeof (document.body.style.maxHeight)) {/* }*/
+                    //if ($.browser.msie) {
+                    //before making an object of ActiveXObject,
+                    //please make sure ActiveX is enabled in your IE browser
+                    var objFSO = new ActiveXObject("Scripting.FileSystemObject"); var filePath = $("#" + fileid)[0].value;
+                    var objFile = objFSO.getFile(filePath);
+                    var fileSize = objFile.size; //size in kb
+                    fileSize = fileSize / 1048576; //size in mb
+                }
+                //for FF, Safari, Opeara and Others
+                else {
+                    fileSize = $("#" + fileid)[0].files[0].size //size in kb
+                    fileSize = fileSize / 1048576; //size in mb
+                }
+                return fileSize;
+            }
+            catch (e) {
+                alert("Error is :" + e);
+            }
+        }
+
+        ////get file path from client system
+        function getNameFromPath(strFilepath) {
+            var objRE = new RegExp(/([^\/\\]+)$/);
+            var strName = objRE.exec(strFilepath);
+
+            if (strName == null) {
+                return null;
+            }
+            else {
+                return strName[0];
+            }
+        }
 
 
 
+
+
+        function checkfile() {
+            debugger;
+            var file = getNameFromPath($("#FileUploadImage").val());
+            if (file != null) {
+                var extension = file.substr((file.lastIndexOf('.') + 1));
+                // alert(extension);
+                switch (extension) {
+                    case 'jpg':
+                    case 'jpeg':
+                    case 'png':
+                    case 'gif':
+                        flag = true;
+                        break;
+                    default:
+                        flag = false;
+                }
+            }
+            if (flag == false) {
+                $("#spanfile").html("You can upload only jpg,jpeg,png,gif extension file");
+                return false;
+            }
+            else {
+                var size = GetFileSize('FileUploadImage');
+                if (size > 1) {
+                    $("#spanfile").html("You can't upload file up to 1 MB");
+                    return false;
+                }
+                else {
+                    $("#spanfile").html("");
+                    return true;
+                }
+            }
+        }
 
     </script>
 

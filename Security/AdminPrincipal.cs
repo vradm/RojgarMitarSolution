@@ -34,18 +34,16 @@ namespace RojgarmitraSolution.Security
         {
             this.Identity = new GenericIdentity(Username);
         }
-        public int UserID { get; set; }
+        public long UserID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string[] Roles { get; set; }
         public string Role { get; set; }
-        public string AuthTocken { get; set; }
-        public int? ParentID { get; set; }
+        public string AuthTocken { get; set; }     
         public string Email { get; set; }
         public string Mobile { get; set; }
         public string Logo { get; set; }
-        public string FullName { get; set; }
-        public string EmployeeID { get; set; }
+        public string FullName { get; set; }       
         public int LoginCount { get; set; }
     }
     public class PrincipalSerializeModel
@@ -57,12 +55,10 @@ namespace RojgarmitraSolution.Security
         //public string LastName { get; set; }
         public string[] Roles { get; set; }
         public string Role { get; set; }
-        public string AuthTocken { get; set; }
-        public int? ParentID { get; set; }
+        public string AuthTocken { get; set; }        
         public string Email { get; set; }
         public string Mobile { get; set; }
-        public string Logo { get; set; }
-        public string EmployeeID { get; set; }
+        public string Logo { get; set; }      
         public int LoginCount { get; set; } = 0;
     }
     
