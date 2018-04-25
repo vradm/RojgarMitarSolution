@@ -1,0 +1,1395 @@
+﻿@model  BusinessModel.UserProfileModel
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+    List<SelectListItem> passingYear = new List<SelectListItem>();
+    for (int i = 1940; i <= DateTime.Now.AddYears(5).Year; i++)
+    {
+        passingYear.Add(new SelectListItem
+        {
+            Text = i.ToString(),
+            Value = i.ToString()
+
+        });
+    };
+    List<SelectListItem> ListDobDay = new List<SelectListItem>();
+    for (int i = 1; i <= 31; i++)
+    {
+        ListDobDay.Add(new SelectListItem
+        {
+            Text = i.ToString(),
+            Value = i.ToString()
+
+        });
+    };
+
+}
+
+
+<!doctype html>
+
+<html>
+<head>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JobsBridge</title>
+
+    @*@Styles.Render("~/Content/css")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    @*@Styles.Render("~/bundles/jquery")*@
+
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/custom.css" rel="stylesheet" />
+    <link href="~/Content/css/profile-1.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800,900" rel="stylesheet">
+
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+    <script src="~/Content/js/modernizr.custom.js"></script>
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.js"></script>
+
+
+
+    <script type="text/javascript">
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            document.body.style.backgroundColor = "white";
+        }
+
+
+    </script>
+
+</head>
+<body>
+
+    <div class="container tpContainer mainBGHP">
+        <div class="row">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Clients</a>
+                <a href="#">Contact</a>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 topContainer">
+                <div class="pull-left">
+                    <div id="main">
+                        <span style="cursor:pointer" class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>
+                        <a href="index.html" style="cursor:pointer" class="logo_small">Jobs Bridge</a>
+
+                    </div>
+                </div>
+                <h1 class="error text-align-center" id="HeaderMessage"></h1>
+                <div class="pull-right tpRightNav">
+                    <ul>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" id="loginJobSeeker" href="/Account/LogOff">LogOut</a>
+                            @*data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"*@
+                            @*<ul class="dropdown-menu pull-right" aria-labelledby="loginJobSeeker">
+                                    <li class="noPaddingLR">
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="usr" placeholder="Email">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" id="pwd" placeholder="Password">
+                                            </div>
+                                            <div class="checkbox sf">
+                                                <label><input type="checkbox"> Stay Signed In</label><a href="">Forget Password</a>
+                                            </div>
+                                            <a type="submit" class="btn btn-block btn-login">Login</a>
+                                            <a type="submit" class="btn btn-block btn-default" href="registration.html">New User? Sign in Here</a>
+                                        </div>
+                                    </li>
+                                </ul>*@
+                        </li>
+                        <li><a href="#">For Employer</a></li>
+                    </ul>
+                </div>
+            </div><!-- Top Row of Navigation -->
+
+            <div class="col-xs-12 col-sm-12 col-md-12 headingInnerMain">
+                Upload Resume On <span>JobsBridge</span> Now!
+            </div><!-- logo -->
+
+        </div>
+    </div><!-- topHeader Ends -->
+
+    <div class="container benifits registration">
+        <div class="row">
+
+            <div class="col-xs-8 col-xs-offset-2 profile_1 noPaddingLR">
+                <div class="col-xs-8 rgtPanelProfile noPaddingLR">
+                    <div class="registration profileInfo editinnerProfile" id="profileInfo_edit" style="display:none;">
+                        <div class="form-group text-align-left">
+                            @Html.HiddenFor(x => Model.UserId)
+                            @Html.HiddenFor(x => x.ResumeName)
+                            <label>Name</label>
+                            @Html.TextBoxFor(x => x.FullName, new { @class = "form-control", @placeholder = "Enter Full Name" })
+                            @* <input type="name" class="form-control" id="name" placeholder="Enter Full Name">*@
+                        </div>
+                        <div class="form-group text-align-left">
+                            <label>Designation</label>
+                            @Html.DropDownListFor(x => x.DesignationID, Model.DesignationList, new { @class = "form-control" })
+                            @*<input type="text" class="form-control" id="designation" placeholder="Designation">*@
+                        </div>
+                        <div class="form-group text-align-left">
+                            <label>Resume Title</label>
+                            @Html.TextAreaFor(x => x.ResumeTitle, new { @class = "form-control", @rows = "3", placeholder = "Enter your resume title" })
+                            @*<textarea class="form-control" rows="3" id="comment" placeholder="Enter your resume title"></textarea>*@
+                            <label class="lbl">Example - MBA in marketing with 9 yrs of experience in account management, business development in FMCG industry</label>
+                        </div>
+                        <div class="col-xs-12 noPaddingLR">
+                            <div class="col-xs-3 noPaddingL">
+                                <div class="form-group">
+                                    <span class="btn btn-default btn-file btn-block">
+                                        Update Resume <input type="file" id="UpdateResume" onblur="validateSize()" />
+
+
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-9 text-align-left smapletxt">
+                                <p>Upload your updated Resume</p>
+                                <label id="spanfile" hidden="hidden" class="error"></label>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12 noPaddingLR actionButtons">
+                            <div class="col-xs-6 text-align-left noPaddingL">
+                                <button class="btn btn-default btn-block save" onclick="show_area('porfil_info_static'); hide_area('profileInfo_edit');">Save</button>
+                            </div>
+                            <div class="col-xs-6 text-align-right noPaddingR">
+                                <button class="btn btn-default btn-block cancel" onclick="show_area('porfil_info_static'); hide_area('profileInfo_edit');">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="profileInfo" id="porfil_info_static">
+                        <a class="edit" href="javascript:void(0);" onclick="hide_area('porfil_info_static'); show_area('profileInfo_edit');"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>Edit</span></a>
+                        <h1>@Model.FullName</h1>
+                        <h5>Lead UI/UX Developer at Glassdoor</h5>
+                        <div class="smallHeadings">Profile Completness</div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75%</div>
+                        </div>
+                        <div class="smallHeadings">Resume Title</div>
+                        <h3>@Model.ResumeTitle</h3>
+                        <div class="col-xs-6 resumeCopy noPaddingL"><span>Resume:</span> <a href="javascript:void(0);">@Model.ResumeName</a> &nbsp; <a href="javascript:void(0);" class="add"><span class="fa fa-plus"></span> Add Another Resume</a> </div>
+                        <div class="col-xs-6 titleAction noPaddingR"><a href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open"></span> Preview</a> <a href="javascript:void(0);"><span class="fa fa-pencil"></span> Edit</a> <a href="javascript:void(0);"><span class="fa fa-trash"></span> Delete</a></div>
+                    </div><!-- profile Info -->
+
+                    <div class="clearfix"></div>
+
+                    <div class="profileDetail" id="profileDetail_edit" style="display:none;">
+                        <h2>Profile Summary</h2>
+                        <div class=" profileDetailEdit">
+                            <div class="form-group currentLocation clearfix">
+                                <label>Experience</label>
+                                <div class="col-xs-12 noPaddingLR">
+                                    <div class="dropdown ">
+                                        @Html.DropDownListFor(x => x.ExperienceID, Model.ListofExp, "Select Experince in Year ", new { @class = "form-control" })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group currentLocation clearfix">
+                                <label>Current Location<span>*</span></label>
+                                <div class="col-xs-12 noPaddingLR">
+                                    <div class="dropdown ">
+                                        @Html.DropDownListFor(x => Model.CurrentLocationID, Model.ListcurrentLocation, new { @class = "form-control  dropdown - menu col - xs - 12" })
+
+                                    </div>
+                                    <div class="checkbox"><label><input type="checkbox" class="checkbox">Outside India</label></div>
+                                </div>
+                            </div>
+                            <div class="form-group currentLocation clearfix">
+                                <label>Functional Area</label>
+                                <div class="col-xs-12 noPaddingLR">
+                                    <div class="dropdown ">
+
+                                        @Html.DropDownListFor(x => Model.FunctionalArea, Model.ListFunctionalArea, new { @class = "form-control  dropdown - menu col - xs - 12" })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group currentLocation clearfix">
+                                <label>Role</label>
+                                <div class="col-xs-12 noPaddingLR">
+                                    <div class="dropdown ">
+                                        @Html.DropDownListFor(x => Model.DesignationID, Model.DesignationList, new { @class = "form-control  dropdown - menu col - xs - 12" })
+
+                                    </div>
+                                </div>
+                                <div class="form-group currentLocation clearfix">
+                                    <label>Industry</label>
+                                    <div class="col-xs-12 noPaddingLR">
+                                        <div class="dropdown ">
+                                            @Html.DropDownListFor(x => Model.IndustryId, Model.ListIndustry, new { @class = "form-control  dropdown - menu col - xs - 12" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Desired Job Type</label>
+                                    <div class="ctm_radio">
+
+                                        <label class="col-xs-4 btnAmPm center-aligned time-period-right">@Html.RadioButtonFor(x => x.JobTypeId, "Permanente")Permanent</label>
+                                        <label class="col-xs-4 btnAmPm center-aligned time-period-right">@Html.RadioButtonFor(x => x.JobTypeId, "Temporary/Contract")Temporary / Contract</label>
+                                        <label class="col-xs-4 btnAmPm center-aligned time-period-right">@Html.RadioButtonFor(x => x.JobTypeId, "Both")Both</label>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 noPaddingLR actionButtons">
+                                    <div class="col-xs-6 text-align-left noPaddingL">
+                                        <button class="btn btn-default btn-block save" onclick="show_area('profileDetail_static'); hide_area('profileDetail_edit');">Save</button>
+                                    </div>
+                                    <div class="col-xs-6 text-align-right noPaddingR">
+                                        <button class="btn btn-default btn-block cancel" onclick="show_area('profileDetail_static'); hide_area('profileDetail_edit');">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- profile Detail Edit -->
+
+                        <div class="profileDetail" id="profileDetail_static">
+                            <a class="edit" href="javascript:void(0);" onclick="hide_area('profileDetail_static'); show_area('profileDetail_edit');"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>Edit</span></a>
+                            <h2>Profile Summary</h2>
+                            <div class="col-xs-6  noPaddingR summary">
+                                <h3>12 years</h3>
+                                <span>Experience</span>
+                            </div>
+                            <div class="col-xs-6  noPaddingR summary">
+                                <h3>UI Developer</h3>
+                                <span>Roles</span>
+                            </div>
+                            <div class="col-xs-6  noPaddingR summary">
+                                <h3>New York</h3>
+                                <span>Current Location</span>
+                            </div>
+                            <div class="col-xs-6  noPaddingR summary">
+                                <h3>IT</h3>
+                                <span>Industry</span>
+                            </div>
+                            <div class="col-xs-6  noPaddingR summary">
+                                <h3>UI/UX</h3>
+                                <span>Function</span>
+                            </div>
+                            <div class="col-xs-6  noPaddingR summary">
+                                <h3>Permanent</h3>
+                                <span>Desired Job Type</span>
+                            </div>
+
+                        </div><!-- Profile Detail -->
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="workHistory" id="workhistory_edit" style="display:none;">
+                        <h2>Work History</h2>
+                        <div class="form-group workHistoryEdit clearfix">
+                            <label>Working Since <span>*</span></label>
+
+                            <div class="col-xs-12 noPaddingLR margin-bottom-20">
+                                <div class="col-xs-6 noPaddingL">
+                                    @*<input type="name" class="form-control" id="name" placeholder="Job Title">*@
+                                    @Html.DropDownListFor(x => Model.DesignationID, Model.DesignationList, new { @class = "form-control dropdown - menu col - xs - 12", @id = "DesignationId1" })
+                                </div>
+
+                                <div class="col-xs-6 noPaddingLR">
+                                    @Html.DropDownListFor(x => Model.CompanyId, Model.CompanyList, "-Select-", new { @class = "form-control  dropdown - menu col - xs - 12" })
+                                    @*<input type="name" class="form-control" id="name" placeholder="Company Name">*@
+                                </div>
+
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-xs-12 noPaddingLR">
+                                <div class="col-xs-4 noPaddingL">
+                                    <div class="dropdown ">
+                                        @*  @Html.DropDownListFor(x => Model.WorkingSinceYear, Model.ListWorkingSince, "-Select-", new { @class = "form-control  dropdown - menu col - xs - 12" })*@
+                                        @Html.DropDownListFor(x => Model.WorkingSinceYear, Model.ListWorkingSince, "-Select-", new { @class = "form-control  dropdown - menu col - xs - 12" })
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-4 noPaddingLR">
+                                    <div class="dropdown ">
+                                        @Html.DropDownListFor(x => Model.WorkingSinceMonth, Model.ListWorkingMonth, "-Select-", new { @class = "form-control  dropdown - menu col - xs - 12" })
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-1 moneyname">
+                                    to
+                                </div>
+                                <div class="col-xs-3 noPaddingLR">
+                                    <div class="dropdown">
+                                        @Html.DropDownListFor(x => Model.WorkingTo, Model.ListWorkingSince, "-Present-", new { @class = "form-control  dropdown - menu col - xs - 12" })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <a href="javascript:void(0)">+ add more</a>
+
+                            <div class="col-xs-12 noPaddingLR actionButtons">
+                                <div class="col-xs-6 text-align-left noPaddingL">
+                                    <button class="btn btn-default btn-block save" onclick="show_area('workhistory_static'); hide_area('workhistory_edit');">Save</button>
+                                </div>
+                                <div class="col-xs-6 text-align-right noPaddingR">
+                                    <button class="btn btn-default btn-block cancel" onclick="show_area('workhistory_static'); hide_area('workhistory_edit');">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div><!-- Work History edit -->
+
+                    <div class="workHistory" id="workhistory_static">
+                        <a class="edit" href="javascript:void(0);" onclick="hide_area('workhistory_static'); show_area('workhistory_edit');"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>Edit</span></a>
+                        <h2>Work History</h2>
+                        <div class="col-xs-6  noPaddingR whContent">
+                            <h3>Lead UI/UX Developer</h3>
+                            <span>at Rabbler from Dec,2016 to Feb, 2017</span>
+                        </div>
+                        <div class="col-xs-6  noPaddingR summary whContent">
+                            <h3>Web Designer</h3>
+                            <span>at Revolution Forever Technologies from June,2015 to Nov, 2016</span>
+                        </div>
+
+                    </div><!-- Work History -->
+
+                    <div class="clearfix"></div>
+
+                    <div class="education" id="education_edit" style="display:none;">
+                        <h2>Education</h2>
+                        <div class="educationEdit">
+                            <div class="form-group currentLocation clearfix">
+                                <label>Highest Qualification</label>
+                                <div class="col-xs-12 noPaddingLR">
+                                    <div class="dropdown ">
+                                        @Html.DropDownListFor(x => x.HighestQualification, Model.ListHighestQulaification, new { @class = "form-control" })
+                                        @*<button class="btn btn-block btn-default dropdown-toggle text-align-left" type="button" id="dropdownMenu6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                Select your highest qualification
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu col-xs-12" aria-labelledby="dropdownMenu6">
+                                                <li><a href="javascript:void(0);">Doctorate/Phd</a></li>
+
+                                            </ul>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group currentLocation clearfix">
+                                <label>Course</label>
+                                <div class="col-xs-12 noPaddingLR">
+                                    <div class="dropdown ">
+                                        @Html.DropDownListFor(x => x.Course, Model.ListCourse, new { @class = "form-control" })
+                                        @*<button class="btn btn-block btn-default dropdown-toggle text-align-left" type="button" id="dropdownMenu6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                Select your Course
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu col-xs-12" aria-labelledby="dropdownMenu6">
+                                                <li><a href="javascript:void(0);">New Delhi</a></li>
+
+                                            </ul>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group currentLocation clearfix">
+                                <label>Specialization</label>
+                                <div class="col-xs-12 noPaddingLR">
+                                    <div class="dropdown ">
+                                        @*<button class="btn btn-block btn-default dropdown-toggle text-align-left" type="button" id="dropdownMenu6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                Select Specialization
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu col-xs-12" aria-labelledby="dropdownMenu6">
+                                                <li><a href="javascript:void(0);">New Delhi</a></li>
+
+                                            </ul>*@
+                                        @Html.DropDownListFor(x => x.Specialization, Model.ListSpecialization, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>University/College</label>
+                                @Html.DropDownListFor(x => x.University_College, Model.UniversityList, new { @class = "form-control" })
+                                @*<input type="email" class="form-control" id="email" placeholder="Institute Name">*@
+                            </div>
+
+                            <div class="form-group">
+                                <label>Course Type</label>
+                                <div class="ctm_radio">
+                                    @*<label class="col-xs-4 btnAmPm center-aligned time-period-right"><input type="radio" name="optradio" value="AM">Full Time</label>
+                                        <label class="col-xs-4 btnAmPm center-aligned time-period-right"><input type="radio" name="optradio" value="PM">Part Time</label>
+                                        <label class="col-xs-4 btnAmPm center-aligned time-period-right"><input type="radio" name="optradio" value="PM">Correspondence</label>*@
+                                    <label class="col-xs-4 btnAmPm center-aligned time-period-right">@Html.RadioButtonFor(x => x.CourseType, "Full Time")Full Time</label>
+                                    <label class="col-xs-4 btnAmPm center-aligned time-period-right">@Html.RadioButtonFor(x => x.CourseType, "Part Time")Part Time</label>
+                                    <label class="col-xs-4 btnAmPm center-aligned time-period-right">@Html.RadioButtonFor(x => x.CourseType, "Correspondence")Correspondence</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group currentLocation clearfix">
+                                <label>Passing Year</label>
+                                <div class="col-xs-12 noPaddingLR">
+                                    <div class="dropdown ">
+                                        @Html.DropDownListFor(x => x.PassingYear, passingYear, new { @class = "form-control" })
+                                        @*<button class="btn btn-block btn-default dropdown-toggle text-align-left" type="button" id="dropdownMenu7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                Select
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu col-xs-12" aria-labelledby="dropdownMenu7">
+                                                <li><a href="javascript:void(0);">2021</a></li>
+                                                <li><a href="javascript:void(0);">2020</a></li>
+                                                <li><a href="javascript:void(0);">2019</a></li>
+                                                <li><a href="javascript:void(0);">2018</a></li>
+                                                <li><a href="javascript:void(0);">2017</a></li>
+
+                                            </ul>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-xs-12 noPaddingLR actionButtons">
+                                <div class="col-xs-6 text-align-left noPaddingL">
+                                    <button class="btn btn-default btn-block save" onclick="show_area('education_static'); hide_area('education_edit');">Save</button>
+                                </div>
+                                <div class="col-xs-6 text-align-right noPaddingR">
+                                    <button class="btn btn-default btn-block cancel" onclick="show_area('education_static'); hide_area('education_edit');">Cancel</button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div><!-- Education Edit -->
+
+                    <div class="education" id="education_static">
+                        <a class="edit" href="javascript:void(0);" onclick="hide_area('education_static'); show_area('education_edit');"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>Edit</span></a>
+                        <h2>Education</h2>
+                        <div class="col-xs-6 noPaddingR education_Content">
+                            <h3>M-Tech</h3>
+                            <span>from Amity University, Noida in 2015</span>
+                        </div>
+                        <div class="col-xs-6 noPaddingR education_Content">
+                            <h3>B-Tech</h3>
+                            <span>from Amity University, Noida in 2012</span>
+                        </div>
+
+                    </div><!-- Work History -->
+
+                </div><!-- Left Panel Info -->
+
+                <div class="col-xs-4 lftPanelProfile noPaddingLR">
+                    <div class="personalInfo personalEdit" id="profileimgcomp_edit" style="display:none;">
+                        <h2>Personal Information</h2>
+                        <div class="form-group">
+                            <label>UserName</label>
+                            @Html.TextBoxFor(x => x.FullName, new { @class = "form-control", @placeholder = "Enter Full Name", @id = "Name1" })
+                            @*<input type="text" class="form-control" id="company" placeholder="Company Name">*@
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            @Html.TextBoxFor(x => x.EmailID, new { @class = "form-control", @placeholder = "Enter Emailid" })
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile</label>
+                            @Html.TextBoxFor(x => x.MobileNumber, new { @class = "form-control", @placeholder = "Enter Mobile Number", @onkeyPress = "return isNumberKey(this)" })
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="col-xs-12 noPaddingLR actionButtons">
+                            <div class="col-xs-6 text-align-left noPaddingL">
+                                <button class="btn btn-default btn-block save" onclick="show_area('profileimgcomp_static'); show_area('profileimgcomp2_static'); hide_area('profileimgcomp_edit');">Save</button>
+                            </div>
+                            <div class="col-xs-6 text-align-right noPaddingR">
+                                <button class="btn btn-default btn-block cancel" onclick="show_area('profileimgcomp_static'); show_area('profileimgcomp2_static');  hide_area('profileimgcomp_edit');">Cancel</button>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                    </div>
+
+                    <div class="profilImage" id="profileimgcomp_static">
+                        <a class="edit_right" href="javascript:void(0);" onclick="hide_area('profileimgcomp_static'); hide_area('profileimgcomp2_static');  show_area('profileimgcomp_edit');"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>Edit</span></a>
+                        <img src="~/Content/images/profile_picture_2.png" />
+                    </div><!-- Profile Image-->
+
+                    <div class="personalInfo" id="profileimgcomp2_static">
+                        <ul>
+                            <li class="piCompany"><span class="glyphicon glyphicon-globe"></span>@Model.CompanyName</li>
+                            <li class="piMobile"><span class="glyphicon glyphicon-phone"></span>@Model.MobileNumber</li>
+                            <li class="piEmail"><span class="glyphicon glyphicon-send"></span>@Model.EmailID</li>
+                        </ul>
+                    </div><!-- Personal Info -->
+
+                    <div class="personalSkills" id="personal_skills_edit" style="display:none;">
+                        <h2>Skills</h2>
+                        <div class="personalSkillsEdit">
+                            <div class="form-group currentLocation clearfix">
+                                <div class="col-xs-12 noPaddingLR">
+                                    <p>Mention all the important programming languages and softwares Example : MS Word, Excel etc</p>
+                                    <div class="clearfix"></div>
+                                    @*  <div class="itSkills">*@
+                                    <div class="col-xs-4 noPaddingLR">
+                                        <label>Skills</label>r
+                                        @Html.TextBoxFor(x => x.UserSkillsDetail.Skills, new { @class = "form-control", @placeholder = "Name" })
+                                    </div>
+                                    <div class="col-xs-2 noPaddingLR">
+                                        <label>Version</label>
+                                        @Html.TextBoxFor(x => x.UserSkillsDetail.Version, new { @class = "form-control", @placeholder = "Version" })
+                                    </div>
+                                    <div class="col-xs-3 noPaddingLR">
+                                        <label>Year</label>
+                                        <div class="dropdown ">
+                                            @*<button class="btn btn-block btn-default dropdown-toggle text-align-left yearbutton" type="button" id="dropdownMenu11" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                    Year
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu col-xs-12" aria-labelledby="dropdownMenu11">
+                                                    <li><a href="javascript:void(0);">2009</a></li>
+                                                    <li><a href="javascript:void(0);">2010</a></li>
+                                                </ul>*@
+                                            @Html.DropDownListFor(x => x.UserSkillsDetail.LastUsedYear, passingYear, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3 noPaddingLR">
+                                        <label>Experience</label>
+                                        <div class="dropdown ">
+                                            @*<button class="btn btn-block btn-default dropdown-toggle text-align-left expbutton" type="button" id="dropdownMenu12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                    Exp
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu col-xs-12" aria-labelledby="dropdownMenu12">
+                                                    <li><a href="javascript:void(0);">5</a></li>
+                                                    <li><a href="javascript:void(0);">10</a></li>
+                                                </ul>*@
+                                            @Html.DropDownListFor(x => x.UserSkillsDetail.Experience, Model.ListofExp, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="class=" col-xs-12 noPaddingLR">
+                                        <table>
+                                            <tbody>
+                                                <tr id="trRow"></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    @* <a href="javascript:void(0)" onclick="addRow();" id="btnAddSkils">+ add more skills</a>*@
+
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-xs-12 noPaddingLR actionButtons">
+                                <div class="col-xs-6 text-align-left noPaddingL">
+                                    <button class="btn btn-default btn-block save" onclick="show_area('personal_skills_static'); hide_area('personal_skills_edit');">Save</button>
+                                </div>
+                                <div class="col-xs-6 text-align-right noPaddingR">
+                                    <button class="btn btn-default btn-block cancel" onclick="show_area('personal_skills_static'); hide_area('personal_skills_edit');">Cancel</button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="personalSkills" id="personal_skills_static">
+                        <a class="edit_right" href="javascript:void(0);" onclick="hide_area('personal_skills_static'); show_area('personal_skills_edit');"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>Edit</span></a>
+                        <h2>Skills</h2>
+                     @for (int k = 0; k < Model.userSkillsDetails.Count; k++)
+                             {
+                                 var item = Model.userSkillsDetails[k].Skills;
+                        <span class="blockcol">@item</span>
+                        <fieldset class="rating">
+                            <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                            <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                            <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        </fieldset>
+
+
+                        @*<span class="blockcol">CSS 3</span>
+                        <fieldset class="rating">
+                            <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                            <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                            <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        </fieldset>
+
+
+                        <span class="blockcol">JQUERY</span>
+                        <fieldset class="rating">
+                            <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                            <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                            <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        </fieldset>
+
+
+                        <span class="blockcol">Magento</span>
+                        <fieldset class="rating">
+                            <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                            <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                            <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        </fieldset>
+
+
+                        <span class="blockcol">Angular</span>
+                        <fieldset class="rating">
+                            <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                            <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                            <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        </fieldset>*@
+
+                     }
+                    </div><!-- Skills -->
+
+                    <div class="clearfix"></div>
+
+                    <div class="personalOtherInfo" id="other_info_edit" style="display:none;">
+                        <h2>Other Details</h2>
+                        <div class="personalOtherInfoEdit">
+                            <div class="form-group currentLocation clearfix">
+                                <label>Date of Birth</label>
+                                <div class="col-xs-12 noPaddingLR">
+                                    <div class="dob">
+
+                                        <div class="col-xs-4 noPaddingLR">
+                                            <label>Year</label>
+                                            <div class="dropdown ">
+                                                @Html.DropDownListFor(x => x.Dobyear, Model.ListWorkingSince, new { @class = "form-control" })
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-xs-4 noPaddingLR">
+                                            <label>Month</label>
+                                            <div class="dropdown ">
+                                                @Html.DropDownListFor(x => x.DobMonth, Model.ListWorkingMonth, new { @class = "form-control" })
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-4 noPaddingLR">
+                                            <label>Day</label>
+                                            <div class="dropdown ">
+                                                @Html.DropDownListFor(x => x.DobDay, ListDobDay, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <div class="ctm_radio">
+                                    <label class="col-xs-6 btnAmPm center-aligned time-period-right">@Html.RadioButtonFor(x => x.Gender, "Male")Male</label>
+                                    <label class="col-xs-6 btnAmPm center-aligned time-period-right">@Html.RadioButtonFor(x => x.Gender, "FeMale")Female</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group currentLocation clearfix">
+                                <label>Marital Status</label>
+                                <div class="col-xs-12 noPaddingLR">
+                                    <div class="dropdown ">
+                                        @Html.DropDownListFor(x => x.MaritalStatus, Model.ListMaritalStatus, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Mailing Address</label>
+                                @*<textarea class="form-control" rows="3" id="comment" placeholder="Enter the address where you are actually living"></textarea>*@
+                                @Html.TextAreaFor(x => x.MailingAddress, new { @class = "form-control", @rows = 3, @placeholder = "Enter the address where you are actually living" })
+                                <div class="mailing noPaddingLR">
+                                    <div class="col-xs-8 noPaddingL">
+                                        <label>City</label>
+                                        @Html.DropDownListFor(x => x.CityID, Model.CityList, new { @class = "form-control" })
+                                        @* <input type="email" class="form-control versioninput" id="city">*@
+                                    </div>
+                                    <div class="col-xs-4 noPaddingR">
+                                        <label>Pincode</label>
+                                        @Html.TextBoxFor(x => x.Pincode, new { @class = "form-control", @MaxLength = "6", @onkeyPress = "return isNumberKey(this)" })
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Differently Abled</label>
+                                <div class="ctm_radio">
+                                    <label class="col-xs-6 btnAmPm center-aligned time-period-right">@Html.RadioButtonFor(x => x.DifferAbled, "Yes")Yes</label>
+                                    <label class="col-xs-6 btnAmPm center-aligned time-period-right">@Html.RadioButtonFor(x => x.DifferAbled, "No")No</label>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-xs-12 noPaddingLR actionButtons">
+                                <div class="col-xs-6 text-align-left noPaddingL">
+                                    <button class="btn btn-default btn-block save" onclick="show_area('other_info_static'); hide_area('other_info_edit');">Save</button>
+                                </div>
+                                <div class="col-xs-6 text-align-right noPaddingR">
+                                    <button class="btn btn-default btn-block cancel" onclick="show_area('other_info_static'); hide_area('other_info_edit');">Cancel</button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="personalOtherInfo" id="other_info_static">
+                        <a class="edit_right" href="javascript:void(0);" onclick="hide_area('other_info_static'); show_area('other_info_edit');"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>Edit</span></a>
+                        <h2>Other Details</h2>
+                        <div class="od"><span>Gender </span>@Model.Gender</div>
+                        <div class="od"><span>DOB </span>@string.Format(Model.DobDay + "-" + Model.DobMonth + "-" + Model.Dobyear)</div>
+                        <div class="od"><span>MaritalStatus </span>@Model.MaritalStatus</div>
+                        <div class="od"><span>Disability </span>@Model.DifferAbled</div>
+
+
+                    </div><!-- Other Details -->
+
+                </div><!-- right Panel Info -->
+
+            </div>
+        </div>
+    </div><!-- Registration Process Ends -->
+
+    <div class="container footer">
+        <div class="row">
+            <h1>Subscribe with Us!</h1>
+            <div class="col-xs-6 col-xs-offset-3 subscribe">
+                <input type="text" class="form-control " placeholder="Enter Your Email Address">
+                <button><span class="glyphicon glyphicon-send"></span></button>
+            </div>
+            <div class="col-xs-4 col-xs-offset-4 socialButton">
+
+                <div class="col-xs-6 text-align-center"><a href=""><img src="~/Content/images/btn_facebook.png"></a></div><div class="col-xs-6 text-align-center"><a href=""><img src="images/btn_gplus.png"></a></div>
+            </div>
+            <div class="col-xs-6 col-xs-offset-3 footerLinks">
+                <ul><li><a href="">Home</a></li><li>|</li><li><a href="">Contact Us</a></li><li>|</li><li><a href="">Feedback</a></li><li>|</li><li><a href="">FAQ</a></li><li>|</li><li><a href="">Terms of Use</a></li><li>|</li><li><a href="">Privacy Policy</a></li></ul>
+            </div>
+            <div class="col-xs-6 col-xs-offset-3 copyright">
+                <div class="col-xs-6 text-align-left txt">Copyright Jobs Bridge @DateTime.Now.Year. All Right Reserved</div>
+                <div class="col-xs-6 text-align-right"><a href=""><img src="images/iconFacebook.png"></a><a href=""><img src="images/iconTwitter.png"></a></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            document.body.style.backgroundColor = "white";
+        }
+
+        // for browseJobs button
+        $("#animate").click(function () {
+            $("#content").animate(
+                { "width": "450px" },
+                "fast");
+        });
+
+
+        // For show - hide
+
+        function show_area(show_area_id) {
+            debugger;
+            switch (show_area_id.toUpperCase()) {
+                case "PORFIL_INFO_STATIC":
+                    debugger;
+                    var FullName = $('#FullName').val();
+                    var designation = $("#DesignationID").val();
+                    var ResumeTitle = $("#ResumeTitle").val();
+                     var ResumeName ='@Html.Raw(Model.ResumeName)';
+                    var valid = 'Y';
+                    if (window.FormData !== undefined) {
+                        var FileUpdateResume = $("#UpdateResume").get(0);
+                        var FileResume = FileUpdateResume.files;
+                        var fileData = new FormData();
+                        // Looping over all files and add it to FormData object
+                        for (var i = 0; i < FileResume.length; i++) {
+                            fileData.append(EmailID + FileResume[i].name, FileResume[i]);
+                        }
+
+                    }
+                    if (valid == 'Y') {
+
+                        fileData.append('FullName', FullName);
+                        fileData.append('designation', designation);
+                        fileData.append('ResumeTitle', ResumeTitle);
+                        fileData.append('ResumeName', ResumeName);
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("UpdateProfileInfo")',
+                            dataType: 'Json',
+                            contentType: false,
+                            processData: false,
+                            data: fileData,
+                            async: true,
+                            success: function (res) {
+                                debugger;
+
+                                if (res) {
+                                    //$('#FullName').val('');
+                                    //$("#DesignationID").val('');
+                                    //$("#ResumeTitle").val('');
+                                    $('#HeaderMessage').empty().append(res.Message);
+                                }
+                                else {
+                                    alert("There is an error occured" + er.Message);
+
+                                }
+
+                            },
+                            error: function (er) {
+
+                            }
+                        });
+                    }
+                    else {
+
+                    }
+                    break;
+
+                case "EDUCATION_STATIC":
+                    var fileData = new FormData();
+                    var HighestQualification = $('#HighestQualification').val();
+                    var Course = $("#Course").val();
+                    var Specialization = $("#Specialization").val();
+                    var University_College = $('#University_College').val();
+                    var CourseType = $("#CourseType").val();
+                    var PassingYear = $("#PassingYear").val();
+                    var Userid = @Html.Raw(Model.UserId);
+
+                    fileData.append('HighestQualification', HighestQualification);
+                    fileData.append('Course', Course);
+                    fileData.append('Specialization', Specialization);
+                    fileData.append('University_College', University_College);
+                    fileData.append('CourseType', CourseType);
+                    fileData.append('PassingYear', PassingYear);
+                    fileData.append('Userid', Userid);
+                    $.ajax({
+                        type: 'POST',
+                        url: "@System.Configuration.ConfigurationManager.AppSettings["baseUrl"].ToString()UserProfile/UpdateWorkEducation",
+                        dataType: 'Json',
+                        contentType: false,
+                        processData: false,
+                        data: fileData,
+                        async: true,
+                        success: function (res) {
+                            debugger;
+
+                            if (res) {
+
+                                $('#HeaderMessage').empty().append(res.Message);
+                            }
+                            else {
+                                alert("There is an error occured" + er.Message);
+
+                            }
+
+                        },
+                        error: function (er) {
+                        @*window.location = "@Url.Action("PersonalDetails")";*@
+                        }
+                    });
+                    break;
+                case "PROFILEIMGCOMP_STATIC":
+
+                    var fileData = new FormData();
+                    var FullName = $("#Name1").val();
+                    var EmailID = $("#EmailID").val();
+                    var MobileNumber = $("#MobileNumber").val();
+                    var Userid = @Html.Raw(Model.UserId);
+                    fileData.append('FullName', FullName);
+                    fileData.append('EmailID', EmailID);
+                    fileData.append('MobileNumber', MobileNumber);
+                    fileData.append('Userid', Userid);
+                    $.ajax({
+                        type: 'POST',
+                        url: "@System.Configuration.ConfigurationManager.AppSettings["baseUrl"].ToString()UserProfile/UpdateBasicInfo",
+                        dataType: 'Json',
+                        contentType: false,
+                        processData: false,
+                        data: fileData,
+                        async: true,
+                        success: function (res) {
+                            debugger;
+
+                            if (res) {
+
+                                $('#HeaderMessage').empty().append(res.Message);
+                            }
+                            else {
+                                alert("There is an error occured" + er.Message);
+
+                            }
+
+                        },
+                        error: function (er) {
+                        @*window.location = "@Url.Action("PersonalDetails")";*@
+                        }
+                    });
+
+                    break;
+                case "OTHER_INFO_STATIC":
+                     var fileData = new FormData();
+                    var Dobyear = $("#Dobyear").val();
+                    var DobMonth = $("#DobMonth").val();
+                    var Dobday = $("#DobDay").val();
+                    var Gender = $("#Gender").val();
+                    var MaritalStatus = $("#MaritalStatus").val();
+                    var MailingAddress = $("#MailingAddress").val();
+                    var CityID = $("#CityID").val();
+                    var Pincode = $("#Pincode").val();
+                    var DifferAbled = $("#DifferAbled").val();
+                    var Userid = @Html.Raw(Model.UserId);
+
+                    fileData.append('Dobyear', Dobyear);
+                    fileData.append('DobMonth', DobMonth);
+                    fileData.append('Dobday', Dobday);
+                    fileData.append('Gender', Gender);
+                    fileData.append('MaritalStatus', MaritalStatus);
+                    fileData.append('MailingAddress', MailingAddress);
+                    fileData.append('CityID', CityID);
+                    fileData.append('Pincode', Pincode);
+                    fileData.append('DifferAbled', DifferAbled);
+                    fileData.append('Userid', Userid);
+                    $.ajax({
+                        type: 'POST',
+                        url: "@System.Configuration.ConfigurationManager.AppSettings["baseUrl"].ToString()UserProfile/UpdateOtherInfo",
+                        dataType: 'Json',
+                        contentType: false,
+                        processData: false,
+                        data: fileData,
+                        async: true,
+                        success: function (res) {
+                            debugger;
+
+                            if (res) {
+
+                                $('#HeaderMessage').empty().append(res.Message);
+                            }
+                            else {
+                                alert("There is an error occured" + er.Message);
+
+                            }
+
+                        },
+                        error: function (er) {
+
+                        }
+                    });
+
+                    break;
+                case "PERSONAL_SKILLS_STATIC" :
+                    var fileData = new FormData();
+                    var UserSkillsDetail_Skills = $("#UserSkillsDetail_Skills").val();
+                    var UserSkillsDetail_Version = $("#UserSkillsDetail_Version").val();
+                    var UserSkillsDetail_LastUsedYear = $("#UserSkillsDetail_LastUsedYear").val();
+                    var UserSkillsDetail_Experience = $("#UserSkillsDetail_Experience").val();
+                    var Userid = @Html.Raw(Model.UserId);
+
+                    fileData.append('UserSkillsDetail_Skills', UserSkillsDetail_Skills);
+                    fileData.append('UserSkillsDetail_Version', UserSkillsDetail_Version);
+                    fileData.append('UserSkillsDetail_LastUsedYear', UserSkillsDetail_LastUsedYear);
+                    fileData.append('UserSkillsDetail_Experience', UserSkillsDetail_Experience);
+                    fileData.append('Userid', Userid);
+                    $.ajax({
+                        type: 'POST',
+                        url: "@System.Configuration.ConfigurationManager.AppSettings["baseUrl"].ToString()UserProfile/UpdatePerosnalSkills",
+                        dataType: 'Json',
+                        contentType: false,
+                        processData: false,
+                        data: fileData,
+                        async: true,
+                        success: function (res) {
+                            debugger;
+                            //var table_data = JSON.parse(res);
+                            if (res) {
+                                //$.each(res, function (i, item) {
+                                //    debugger;
+                                //    var $tr = $('<trRow>').append(
+                                //        $('<td>').text(item.Skills),
+                                //        $('<td>').text(item.Version),
+                                //        $('<td>').text(item.LastUsedYear)
+                                //    ); //.appendTo('#records_table');
+                                //    //console.log($tr.wrap('<p>').html());
+                                //});
+                                $("#UserSkillsDetail_Skills").val('');
+                                $("#UserSkillsDetail_Version").val('');
+                                $("#UserSkillsDetail_LastUsedYear").val('');
+                                $("#UserSkillsDetail_Experience").val('');
+                                $('#HeaderMessage').empty().append(res.Message);
+                            }
+                            else {
+                                $('#HeaderMessage').empty().append(res.Message);
+
+                            }
+
+                        },
+                        error: function (er) {
+
+                        }
+                    });
+
+                    break;
+
+                case "WORKHISTORY_STATIC" :
+                    var fileData = new FormData();
+                    var DesignationID = $("#DesignationId1").val();
+                    var CompanyId = $("#CompanyId").val();
+                    var WorkingSinceYear = $("#WorkingSinceYear").val();
+                    var WorkingSinceMonth = $("#WorkingSinceMonth").val();
+                    var WorkingTo = $("#WorkingTo").val();
+                    var Userid = @Html.Raw(Model.UserId);
+
+                    fileData.append('DesignationID', DesignationID);
+                    fileData.append('CompanyId', CompanyId);
+                    fileData.append('WorkingSinceYear', WorkingSinceYear);
+                    fileData.append('WorkingSinceMonth', WorkingSinceMonth);
+                    fileData.append('WorkingTo', WorkingTo);
+                    fileData.append('Userid', Userid);
+                    $.ajax({
+                        type: 'POST',
+                        url: "@System.Configuration.ConfigurationManager.AppSettings["baseUrl"].ToString()UserProfile/UpdateWorkHistory",
+                        dataType: 'Json',
+                        contentType: false,
+                        processData: false,
+                        data: fileData,
+                        async: true,
+                        success: function (res) {
+                            debugger;
+                            //var table_data = JSON.parse(res);
+                            if (res) {
+
+                                $('#HeaderMessage').empty().append(res.Message);
+                            }
+                            else {
+                                $('#HeaderMessage').empty().append(res.Message);
+
+                            }
+
+                        },
+                        error: function (er) {
+
+                        }
+                    });
+
+                    break;
+
+            }
+
+            if (!document.getElementById(show_area_id))
+                return;
+            document.getElementById(show_area_id).style.display = '';
+
+            setTimeout(function () {
+                jQuery('#success').fadeOut(100);
+            }, 2000);
+        }
+            function hide_area(hide_area_id) {
+                debugger;
+            document.getElementById(hide_area_id).style.display = 'none';
+        }
+
+        function show_hide(show_hide_id) {
+
+            if ((document.getElementById(show_hide_id).style.display) && (document.getElementById(show_hide_id).style.display == 'none')) {
+                show_area(show_hide_id);
+            }
+            else {
+                hide_area(show_hide_id);
+            }
+        }
+
+        $("input[type=radio]").click(function () {
+            name = $(this).attr('name');;
+            $("input[name=" + name + "]").parent().removeClass('btnAmPm_selected');
+            $(this).parent().addClass("btnAmPm_selected");
+
+        });
+
+        //  for Carousel
+        $(document).ready(function () {
+            $('#media').carousel({
+                pause: true,
+                interval: false,
+            });
+        });
+
+
+        //Image validation
+        function validateSize() {
+            debugger;
+            if ($('#UpdateResume').val() == "") {
+                //$("#spanfile").show(true);
+                //$("#spanfile").html("Please upload file");
+                return true;
+            }
+            else {
+                $("#spanfile").show(true);
+                checkfile();
+            }
+        }
+
+        function GetFileSize(fileid) {
+            try {
+                debugger;
+                var fileSize = 0;
+                //for IE
+                if ('undefined' == typeof (document.body.style.maxHeight)) {/* }*/
+                    //if ($.browser.msie) {
+                    //before making an object of ActiveXObject,
+                    //please make sure ActiveX is enabled in your IE browser
+                    var objFSO = new ActiveXObject("Scripting.FileSystemObject"); var filePath = $("#" + fileid)[0].value;
+                    var objFile = objFSO.getFile(filePath);
+                    var fileSize = objFile.size; //size in kb
+                    fileSize = fileSize / 1048576; //size in mb
+                }
+                //for FF, Safari, Opeara and Others
+                else {
+                    fileSize = $("#" + fileid)[0].files[0].size //size in kb
+                    fileSize = fileSize / 1048576; //size in mb
+                }
+                return fileSize;
+            }
+            catch (e) {
+                alert("Error is :" + e);
+            }
+        }
+
+        ////get file path from client system
+        function getNameFromPath(strFilepath) {
+            var objRE = new RegExp(/([^\/\\]+)$/);
+            var strName = objRE.exec(strFilepath);
+
+            if (strName == null) {
+                return null;
+            }
+            else {
+                return strName[0];
+            }
+        }
+
+        function checkfile() {
+            debugger;
+            var file = getNameFromPath($("#UpdateResume").val());
+            if (file != null) {
+                var extension = file.substr((file.lastIndexOf('.') + 1));
+                var ExtensionNew = extension.toUpperCase();
+                // alert(extension);
+                switch (extension.toUpperCase()) {
+                    //case 'jpg':
+                    //case 'png':
+                    //case 'gif':
+                    case 'PDF':
+                    case 'DOCX':
+                    case 'DOC':
+                        flag = true;
+                        break;
+                    default:
+                        flag = false;
+                }
+            }
+            if (flag == false) {
+                $("#spanfile").html("You can upload only pdf,doc,docx extension file");
+                return false;
+            }
+            else {
+                var size = GetFileSize('UpdateResume');
+                if (size > 3) {
+                    $("#spanfile").html("You can't upload file up to 3 MB");
+                    return false;
+                }
+                else {
+                    $("#spanfile").html("");
+                    return true;
+                }
+            }
+        }
+
+
+    </script>
+
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                debugger;
+                //DesignationBind();
+                $('#University_College').empty().append($("<option></Option>").val('').html("Please Wait.."));
+                //jQuery.support.cors = true;
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: "@System.Configuration.ConfigurationManager.AppSettings["baseUrl"].ToString()Master/University_CollegeList",
+
+                    dataType: "json",
+                    succuess: function (Result) {
+                        debugger;
+                        $.each(Result.d, function (key, value) {
+                            $("#University_College").append($("<option></option>").val(value.designationID).html(value.designationName));
+                        });
+
+
+
+                    },
+                    error: function (res) {
+
+                        debugger;
+                        //$.each(res, function (i, p) {
+                        //    debugger;
+                        //    $("#DesignationID").append('option value="' + p.value + '">')
+
+
+                        //});
+                    }
+
+
+                });
+            });
+
+
+
+            function DesignationBind() {
+                debugger;
+                $('#DesignationID').empty().append($("<option></Option>").val('').html("Please Wait.."));
+                //jQuery.support.cors = true;
+                $.ajax({
+                    type: "GET",
+                    url: "@System.Configuration.ConfigurationManager.AppSettings["baseUrl"].ToString()Master/DesignationList",
+                    //dataType: "JSON",
+                    type: "GET",
+                    //contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    succuess: function (res) {
+                        debugger;
+                        $.each(res, function (i, p) {
+                            debugger;
+                            $("#DesignationID").append('option value="' + p.value + '">')
+                        });
+                    },
+                    error: function (res) {
+
+                        debugger;
+                        //$.each(res, function (i, p) {
+                        //    debugger;
+                        //    $("#DesignationID").append('option value="' + p.value + '">')
+
+
+                        //});
+                    }
+
+
+                })
+            };
+        </script>*@
+
+</body>
+</html>
+
+<script type="text/javascript">
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+</script>
+<script language="javascript" type="text/javascript">
+    function addRow() {
+        debugger;
+
+@{
+    Model.userSkillsDetails.Add(new  BusinessModel.UserSkillsDetail());
+}
+
+           var index = $("#tbSkills").children("tr").length;
+
+            var indexCell = "<td style='display:none'><input name='Skiils.Index'   type='hidden' value='" + index + "' /> </td>";
+        var titleCell = "<td><input id='Skills_" + index + "__Title'name='Skiils[" + index + "].Skiils' type='text' value=''/></td>";
+        var publishedCell = "<td><input id='version" + index + "__Title'  name='version[" + index + "].version' type='text' value='' /></td>";
+        var LastUsed = "<td><input id='Skills_" + index + "__Title'name='Skiils[" + index + "].LastUsed' type='text' value=''/></td>";
+        var Experience = "<td><input id='version" + index + "__Title'  name='version[" + index + "].Experience' type='text' value='' /></td>";
+           var removeCell = "<td><input id='btnRemoveSkils' type='button' value='Remove' onclick='removeRow(" + index + ");' /></td>";
+            var newRow = "<tr id='trSkiils" + index + "'> " + indexCell + titleCell + publishedCell + removeCell + "</tr>";
+        $("#tbSkills").append(newRow);
+        }
+
+    function removeRow(id) {
+
+        var controlToBeRemoved = "#trSkiils" + id;
+            $(controlToBeRemoved).remove();
+    }
+
+</script>
+
+
+
+
+
